@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <!-- search form -->
+
+    <div class="jumbotron">
+        <div class="container">
+          <form action="." method="post">
+            {% csrf_token %}
+            <div class="input-group">
+              <input id="search_box" name="search_box" type="text"
+              placeholder="Matrícula, nome do aluno, cidade ou alojamento..." class="form-control">
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-success">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
+
+    <div class="container">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Nº</th>
+            <th>Matrícula</th>
+            <th>Nome</th>
+            <th>Cidade</th>
+            <th>Turma</th>
+            <th>Alojamento</th>
+            {% if perms.auth.add_aluno %}
+            <th>Editar</th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tbody>
+      {% for aluno in alunos %}
+          <tr>
+           <td>{{ forloop.counter }}</td>
+           <td>{{ aluno.matricula }}</td>
+           <td><a href="{% url 'aluno_perfil' aluno.matricula %}" method="post" name="aluno_perfil">{{ aluno.nome }}</a></td>
+           <td>{{ aluno.cidade }}</td>
+           <td>{{ aluno.turma }}</td>
+           <td>{{ aluno.alojamento }}</td>
+           {% if perms.auth.add_aluno %}
+           <td>
+             <a href="{% url 'aluno_update' aluno.matricula %}">
+         			<span class="glyphicon glyphicon-pencil"></span>
+         		</a>
+          </td>
+          {% endif %}
+          </tr>
+      {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+   <div class="row">
+      <div class="jumbotron">
+        <div class="col-md-3">
+          <div class="text-center">
+            <img src="{{ aluno.perfil_aluno.foto.url }}" class="img-circle" alt="Sem foto" width="180" height="180">
+            <h3>{{ aluno.nome }}</h3>
+          </div>
+        </div>
+        <div class="col-md-2">
+            <div class="list-group">
+              {% if perms.auth.add_aluno %}
+              <a href="{% url 'aluno_update' aluno.matricula %}" class="list-group-item"><b>Matrícula</b>: {{ aluno.matricula }}</a>
+              <a class="list-group-item"><b>Nascimento</b>: {{ aluno.nascimento }}</a>
+              <a class="list-group-item"><b>Idade</b>: {{ idade }}</a>
+              <a class="list-group-item"><b>Cidade</b>: {{ aluno.cidade }}</a>
+              <a class="list-group-item"><b>Turma</b>: {{ aluno.turma }}</a>
+              <a class="list-group-item"><b>Alojamento</b>: {{ aluno.alojamento }}</a>
+              <a class="list-group-item"><b>Emancipado</b>: {{ emancipado }}</a>
+              <a class="list-group-item"><b>Telefone</b>: {{ aluno.telefone }}</a>
+              {% else %}
+              <a class="list-group-item"><b>Matrícula</b>: {{ aluno.matricula }}</a>
+              <a class="list-group-item"><b>Nascimento</b>: {{ aluno.nascimento }}</a>
+              <a class="list-group-item"><b>Idade</b>: {{ idade }}</a>
+              <a class="list-group-item"><b>Cidade</b>: {{ aluno.cidade }}</a>
+              <a class="list-group-item"><b>Turma</b>: {{ aluno.turma }}</a>
+              <a class="list-group-item"><b>Alojamento</b>: {{ aluno.alojamento }}</a>
+              <a class="list-group-item"><b>Emancipado</b>: {{ emancipado }}</a>
+              <a class="list-group-item"><b>Telefone</b>: {{ aluno.telefone }}</a>
+              {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="list-group">
+              {% if perms.auth.add_aluno %}
+              {% if aluno.familia.mae %}
+              <a href="{% url 'aluno_update_familia' aluno.familia.pk %}" class="list-group-item"><b>Mãe</b>: {{ aluno.familia.mae }}</a>
+              {% else %}
+              <a href="{% url 'aluno_add_familia'  %}" class="list-group-item"><b>Mãe</b>: {{ aluno.familia.mae }}</a>
+              {% endif %}
+              <a class="list-group-item"><b>Profissão da Mãe</b>: {{ aluno.familia.profissao_mae }}</a>
+              <a class="list-group-item"><b>Pai</b>: {{ aluno.familia.pai }}</a>
+              <a class="list-group-item"><b>Profissão do Pai</b>: {{ aluno.familia.profissao_pai }}</a>
+              <a class="list-group-item"><b>Responsável</b>: {{ aluno.familia.responsavel }}</a>
+              <a class="list-group-item"><b>Cuidado especial</b>: {{ aluno.perfil_aluno.saude }}</a>
+              <a class="list-group-item"><b>Telefone</b>: {{ aluno.familia.telefone }}</a>
+              <a class="list-group-item"><b>Celular</b>: {{ aluno.familia.celular }}</a>
+              <a class="list-group-item"><b>Celular2</b>: {{ aluno.familia.celular2 }}</a>
+              {% else %}
+              <a class="list-group-item"><b>Mãe</b>: {{ aluno.familia.mae }}</a>
+              <a class="list-group-item"><b>Profissão da Mãe</b>: {{ aluno.familia.profissao_mae }}</a>
+              <a class="list-group-item"><b>Pai</b>: {{ aluno.familia.pai }}</a>
+              <a class="list-group-item"><b>Profissão do Pai</b>: {{ aluno.familia.profissao_pai }}</a>
+              <a class="list-group-item"><b>Responsável</b>: {{ aluno.familia.responsavel }}</a>
+              <a class="list-group-item"><b>Cuidado especial</b>: {{ aluno.perfil_aluno.saude }}</a>
+              <a class="list-group-item"><b>Telefone</b>: {{ aluno.familia.telefone }}</a>
+              <a class="list-group-item"><b>Celular</b>: {{ aluno.familia.celular }}</a>
+              <a class="list-group-item"><b>Celular2</b>: {{ aluno.familia.celular2 }}</a>
+              {% endif %}
+            </div>
+        </div>
+        <div class="col-md-3">
+            {% if perms.auth.add_aluno %}
+            <div class="list-group">
+              {% if aluno.curso.curso %}
+              <a href="{% url 'aluno_update_curso' aluno.curso.pk %}"class="list-group-item"><b>Curso</b>: {{ aluno.curso.curso }}</a>
+              {% else %}
+              <a href="{% url 'aluno_add_curso' %}"class="list-group-item"><b>Curso</b>: {{ aluno.curso.curso }}</a>
+              {% endif %}
+              <a class="list-group-item"><b>Forma</b>: {{ aluno.curso.forma }}</a>
+              {% if aluno.perfil_aluno.reside %}
+              <a href="{% url 'aluno_update_perfil' aluno.perfil_aluno.pk %}" class="list-group-item"><b>Reside em local</b>: {{ aluno.perfil_aluno.reside }}</a>
+              {% else %}
+              <a href="{% url 'aluno_add_perfil' %}" class="list-group-item"><b>Reside em local</b>: {{ aluno.perfil_aluno.reside }}</a>
+              {% endif %}
+              <a class="list-group-item"><b>Objetivo ao completar o curso</b>: {{ aluno.perfil_aluno.objetivos }}</a>
+              <a class="list-group-item"><b>Motivo pela escolha do IFC</b>: {{ aluno.perfil_aluno.motivo }}</a>
+              <a class="list-group-item"><b>Posição no ensino</b>: {{ posicao_ensino }}º</a>
+              <a class="list-group-item"><b>Posição no comportamento</b>: {{ posicao_comportamento }}º</a>
+            </div>
+            {% else %}
+            <div class="list-group">
+              <a class="list-group-item"><b>Curso</b>: {{ aluno.curso.curso }}</a>
+              <a class="list-group-item"><b>Forma</b>: {{ aluno.curso.forma }}</a>
+              <a class="list-group-item"><b>Reside em local</b>: {{ aluno.perfil_aluno.reside }}</a>
+              <a class="list-group-item"><b>Objetivo ao completar o curso</b>: {{ aluno.perfil_aluno.objetivos }}</a>
+              <a class="list-group-item"><b>Motivo pela escolha do IFC</b>: {{ aluno.perfil_aluno.motivo }}</a>
+              <a class="list-group-item"><b>Posição no ensino</b>: {{ posicao_ensino }}º</a>
+              <a class="list-group-item"><b>Posição no comportamento</b>: {{ posicao_comportamento }}º</a>
+            </div>
+            {% endif %}
+        </div>
+
+     </div>
+   </div>
+
+
+   <div class="jumbotron">
+     <div class="container text-center">
+       <h2>Tipo de aluno</h2>
+       <p><h5>A avaliação do tipo de aluno é efetuada a partir de duas entradas:
+         <b>média geral</b> do trimestre (nota) e nota de <b>comportamento</b> (comportamento) com base nas medidas disciplinares.
+         A saída, que corresponde ao <b>tipo de aluno</b> (A, B ou C), é calculada com lógica Fuzzy.</h6></p>
+     </div>
+   </div>
+
+   <div class="row">
+      <div class="container text-center">
+        <div class="col-md-6">
+          <h3><b>Nota de ensino</b>: {{ aluno.perfil_aluno.nota_ensino }}</h3>
+          <h3><b>Nota de comportamento</b>: {{ aluno.perfil_aluno.nota_comportamento }}</h3>
+        </div>
+
+        <div class="col-md-4">
+          <h1 class="tipoAluno">{% if valor > 6.5 %}<span style="color:green">A</span>
+              {% elif valor > 4.6 and valor <= 6.5 %}<span style="color:#FFA07A">B</span>
+              {% else %}<span style="color:red">C</span>{% endif %}</h1>
+        </div>
+
+      </div>
+    </div>
+    <!-- Relatorios -->
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h2>Relatórios</h2>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container">
+          <div class="table-responsive">
+            <table class="table">
+               <thead>
+                 <tr>
+                   <th>Título</th>
+                   <th>Artigo</th>
+                   <th>Medida prevista</th>
+                   <th>Texto</th>
+                   <th>Data</th>
+                   <th>Servidor</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 {% for relatorio in relatorios %}
+                 <tr>
+                   <td><a href="{% url 'relatorio_detalhe' relatorio.id %}">{{ relatorio.titulo }}</td>
+                   <td>{{ relatorio.artigo }}</td>
+                   <td>{{ relatorio.medida_prevista }}</td>
+                   <td style="text-align:justify;">{{ relatorio.texto }}</td>
+                   <td>{{ relatorio.data }}</td>
+                   <td>{{ relatorio.servidor }}</td>
+                 </tr>
+                 {% endfor %}
+               </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comunicados -->
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h2>Comunicados</h2>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container">
+          <div class="table-responsive">
+            <table class="table">
+               <thead>
+                 <tr>
+                   <th>Tipo</th>
+                   <th>Texto</th>
+                   <th>Data</th>
+                   <th>Servidor</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 {% for comunicado in comunicados %}
+                 <tr>
+                   <td><a href="{% url 'comunicado_detalhe' comunicado.id %}">{{ comunicado.tipo }}</a></td>
+                   <td style="text-align:justify;">{{ comunicado.texto }}</td>
+                   <td>{{ comunicado.data }}</td>
+                   <td>{{ comunicado.servidor }}</td>
+                 </tr>
+                 {% endfor %}
+               </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Atendimento educacional -->
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h2>Atendimentos educacionais</h2>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container">
+          <div class="table-responsive">
+            <table class="table">
+               <thead>
+                 <tr>
+                   <th>Ocorrência</th>
+                   <th>Setor</th>
+                   <th>Data</th>
+                   <th>Servidor</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 {% for edu in educacional %}
+                 <tr>
+                   <td>{{ edu.ocorrencia }}</td>
+                   <td style="text-align:justify;">{{ edu.setor }}</td>
+                   <td>{{ edu.data }}</td>
+                   <td>{{ edu.servidor }}</td>
+                 </tr>
+                 {% endfor %}
+               </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

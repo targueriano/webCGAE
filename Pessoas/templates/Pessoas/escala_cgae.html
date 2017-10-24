@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="text-center">
+    <hr><h1 class="anos">Escala de horário dos servidores</h1>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="well col-md-12">
+      <ul class="nav nav-pills">
+        {% if dia == 0 %}
+       <li class="active"><a href="{% url 'escala_cgae_select' 0 %}">Segunda-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 1 %}">Terça-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 2 %}">Quarta-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 3 %}">Quinta-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 4 %}">Sexta-feira</a></li>
+       {% elif dia == 1 %}
+       <li><a href="{% url 'escala_cgae_select' 0 %}">Segunda-feira</a></li>
+       <li class="active"><a href="{% url 'escala_cgae_select' 1 %}">Terça-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 2 %}">Quarta-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 3 %}">Quinta-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 4 %}">Sexta-feira</a></li>
+       {% elif dia == 2 %}
+       <li><a href="{% url 'escala_cgae_select' 0 %}">Segunda-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 1 %}">Terça-feira</a></li>
+       <li class="active"><a href="{% url 'escala_cgae_select' 2 %}">Quarta-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 3 %}">Quinta-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 4 %}">Sexta-feira</a></li>
+       {% elif dia == 3 %}
+       <li><a href="{% url 'escala_cgae_select' 0 %}">Segunda-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 1 %}">Terça-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 2 %}">Quarta-feira</a></li>
+       <li class="active"><a href="{% url 'escala_cgae_select' 3 %}">Quinta-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 4 %}">Sexta-feira</a></li>
+       {% elif dia == 4 %}
+       <li><a href="{% url 'escala_cgae_select' 0 %}">Segunda-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 1 %}">Terça-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 2 %}">Quarta-feira</a></li>
+       <li><a href="{% url 'escala_cgae_select' 3 %}">Quinta-feira</a></li>
+       <li class="active"><a href="{% url 'escala_cgae_select' 4 %}">Sexta-feira</a></li>
+       {% endif %}
+      </ul>
+    </div>
+    <table class="table table-hover table-responsive">
+      <thead>
+        <tr>
+          <th>Horário de entrada</th>
+          <th>Início do intervalo</th>
+          <th>Fim do intervalo</th>
+          <th>Horário de saída</th>
+          <th>Servidor</th>
+        </tr>
+      </thead>
+      {% for hr in escala %}
+      <tbody>
+        <tr>
+          <td>{{ hr.horario_de_inicio }}</td>
+          <td>{{ hr.intervalo_inicio }}</td>
+          <td>{{ hr.intervalo_fim }}</td>
+          <td>{{ hr.horario_de_saida }}</td>
+          <td>{{ hr.servidor.get_full_name }}</td>
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock content %}

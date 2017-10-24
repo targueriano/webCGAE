@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="text-center">
+    <hr><h1 class="anos">Quarto {{ alunos.0.alojamento }}</h1>
+    <hr>
+  </div>
+
+  <div class="row">
+    {% for aluno in alunos %}
+    <div class="col-md-3">
+        <a href="{% url 'aluno_perfil' aluno.matricula %}" method="post" ><img src="{{ aluno.perfil_aluno.foto.url }}" class="img-rounded img-responsive" alt="Foto" width="170" height="170"></a>
+      <div class="caption">
+        <h4>{{ perf.aluno.nome }}</h4>
+      </div>
+    </div>
+    {% endfor %}
+    <div class="col-md-12">
+      <table class="table table-responsive table-hover">
+        <thead>
+          <tr>
+            <th>Aluno</th>
+            <th>Turma</th
+          </tr>
+        </thead>
+      {% for aluno in alunos %}
+        <tbody>
+          <tr>
+            <td>{{ aluno.nome }}</td>
+            <td>{{ aluno.turma }}</td>
+          </tr>
+        </tbody>
+      {% endfor %}
+      </table>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="well text-center">
+  <h1 class="anos">Local de residência e Tipo de aluno
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <canvas id="residenciaChart" max-width="150" max-height="150"></canvas>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <canvas id="tipoAluno" max-width="150" max-height="150"></canvas>
+    </div>
+  </div>
+</div>
+<br>
+<div class="well text-center">
+  <h1 class="anos">Objetivo e Motivação
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <canvas id="objetivoChart" max-width="150" max-height="150"></canvas>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5">
+      <canvas id="motivacaoChart" max-width="150" max-height="150"></canvas>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+{% endblock content %}
+
+{% block scripts %}
+
+<script>
+var ctx = document.getElementById("residenciaChart");
+var num = JSON.parse('{{ qtd_alunos_local|safe }}');
+var residenciaChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Urbano', 'Agrícola'],
+        datasets: [{
+            label: "Alunos",
+            data: num,
+            backgroundColor: [
+                'rgba(47, 79, 79, 0.8)',
+                'rgba(34, 139, 34, 0.8)',
+
+            ],
+            borderColor: [
+                'rgba(0,0,0,1)',
+                'rgba(0, 0, 0, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+
+});
+</script>
+
+<script>
+var ctx = document.getElementById("objetivoChart");
+var num = JSON.parse('{{ objetivos|safe }}');
+var objetivoChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Curso superior na área agrícola', 'Curso superior fora da área agrícola',
+                 'Continuar trabalho familiar na agricultura', 'Trabalhar na área do curso',
+                 'Outro', 'Não sabe responder'],
+        datasets: [{
+            label: "Alunos",
+            data: num,
+            backgroundColor: [
+                'rgba(102,205,170,1)',
+                'rgba(250,128,114,1)',
+                'rgba(135,206,235,1)',
+                'rgba(128,0,128,1)',
+                'rgba(205,92,92,1)',
+                'rgba(0,0,0,1)',
+
+
+            ],
+            borderColor: [
+                'rgba(0,0,0,1)',
+                'rgba(0,0,0,1)',
+                'rgba(0,0,0,1)',
+                'rgba(0,0,0,1)',
+                'rgba(0,0,0,1)',
+                'rgba(0,0,0,1)',
+
+            ],
+            borderWidth: 1
+        }]
+    },
+
+});
+</script>
+
+<script>
+var ctx = document.getElementById("motivacaoChart");
+var motivacao = JSON.parse('{{ motivacao|safe }}');
+var mot = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Ensino médio de qualidade', 'Curso técnico', 'Ambos', 'Outro'],
+        datasets: [{
+            label: "Alunos",
+            data: motivacao,
+            backgroundColor: [
+                'rgba(70, 130, 180, 1)',
+                'rgba(75,0,130, 1)',
+                'rgba(0,255,255, 1)',
+                'rgba(165, 42, 42, 1 )',
+
+            ],
+            borderColor: [
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+
+});
+</script>
+
+<script>
+var ctx = document.getElementById("tipoAluno");
+var alunos_ABC = JSON.parse('{{ alunos_ABC|safe }}');
+var tipoAluno = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['A', 'B', 'C'],
+        datasets: [{
+            label: "Alunos",
+            data: alunos_ABC,
+            backgroundColor: [
+                'rgba(0, 128, 0, 0.8)',
+                'rgba(255,160,122, 0.8)',
+                'rgba(255, 0, 0, 0.8)',
+
+            ],
+            borderColor: [
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+
+});
+</script>
+
+
+{% endblock %}

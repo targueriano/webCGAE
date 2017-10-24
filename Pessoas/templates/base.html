@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+
+<html>
+  <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+
+    {% load bootstrap3 %}
+    {% load staticfiles %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barrio" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="icon" href="{% static 'Pessoas/logo.png' %}">
+    <!-- Plotar graficos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+
+
+    {% block title %}
+      <title>webCGAE</title>
+    {% endblock title %}
+
+    <style>
+    	.carousel-inner > .item > img,
+    	.carousel-inner > .item > a > img {
+    			width: 60%;
+    			margin: auto;
+
+    	}
+      h1.tipoAluno{
+        font-family: 'Courgette', cursive;
+        font-size: 150px;
+      }
+      h1.anos{
+        font-family: 'Courgette', cursive;
+        font-size: 40px;
+      }
+      /* para Top 10*/
+      h1.top{
+        font-family: 'Barrio', cursive;
+        font-size: 60px;
+      }
+      h3.top{
+        font-family: 'Barrio', cursive;
+      }
+
+
+
+    	/* Add a gray background color and some padding to the footer */
+    	footer {
+      	background-color: #CD5C5C;
+      	color: white;
+      	padding: 25px;
+
+    	}
+
+    	.navbar {
+			margin-bottom:0;
+			border-radius:0;
+    	}
+
+    </style>
+  </head>
+
+  <body>
+
+    {% include "menu.html" %}
+
+    {% block content %}
+
+
+    {% endblock %}
+
+    {% block scripts %}
+
+    {% endblock %}
+
+
+    {% block javascript %}
+      <!-- Latest JQuery -->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+      <script>
+      $(document).ready(function(){
+        $('.dropdown-submenu a.menu').on("click", function(e){
+          $(this).next('ul').toggle();
+          e.stopPropagation();
+          e.preventDefault();
+        });
+      });
+      </script>
+
+    {% endblock javascript %}
+
+    <footer class="container-fluid text-center">
+       <p>Instituto Federal de Educação, Ciência e Tecnologia Catarinense - Campus Rio do Sul<br>
+        Sede: Estrada do Redentor, 5665 - Cx. Postal 441 - CEP 89163-356 - Rio do Sul - SC Fone/Fax: (47) 3531-3700<br>
+        Unidade Urbana: Rua Abraham Lincoln, 210, Bairro Jardim América - CEP 89160-202 - Rio do Sul - SC
+        Fone: (47) 3525-8600 Fax: (47) 3525-8616 </p>
+   </footer>
+
+  </body>
+</html>

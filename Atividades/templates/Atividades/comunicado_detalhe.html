@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="well text-center"><h1 class="anos">Comunicação {{ comunicado.id }}</h1></div>
+
+<div class="container">
+    <div class="row"><h4>
+      <div class="col-md-6">
+        <div class="list-group">
+          {% if comunicado.aluno %}
+          <a href="{% url 'aluno_perfil' comunicado.aluno.matricula  %}" class="list-group-item"><b>ALUNO</b>: {{ comunicado.aluno }}</a>
+          {% else %}
+          <a class="list-group-item"><b>ALUNO</b>: {{ comunicado.aluno }}</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="list-group">
+          <a class="list-group-item"><b>DATA</b>: {{ comunicado.data }}</a>
+          <a class="list-group-item"><b>SERVIDOR</b>: {{ comunicado.servidor.get_full_name }}</a>
+        </div>
+      </div>
+    </div><!-- fim do row-->
+  </h4>
+
+
+  {% if comunicado.tipo == 'Aviso' %}
+    <h1 class="anos text-center" style="color:green;">{{comunicado.tipo}}</h1>
+    {% elif comunicado.tipo == 'Atendimento' %}
+    <h1 class="anos text-center" style="color:blue;">{{comunicado.tipo}}</h1>
+    {% elif comunicado.tipo == 'Norma' %}
+    <h1 class="anos text-center" style="color:#848484;">{{comunicado.tipo}}</h1>
+    {% elif comunicado.tipo == 'Sugestão' %}
+    <h1 class="anos text-center" style="color:#FA5882;">{{comunicado.tipo}}</h1>
+    {% elif comunicado.tipo == 'Geral' %}
+    <h1 class="anos text-center" style="color:#2E2E2E;">{{comunicado.tipo}}</h1>
+    {% elif comunicado.tipo == 'Solicitação' %}
+    <h1 class="anos text-center" style="color:#FF8000;">{{comunicado.tipo}}</h1>
+    {% elif comunicado.tipo == 'Elogio' %}
+    <h1 class="anos text-center" style="color:#00FF00;">{{comunicado.tipo}}</h1>
+    {% elif comunicado.tipo == 'Alerta' %}
+    <h1 class="anos text-center" style="color:red;">{{comunicado.tipo}}</h1>
+  {% endif %}
+  <table class="table table-responsive table-hover">
+    <td>
+      <h4 style="text-align:justify;"><p>{{ comunicado.texto }}</h4></p>
+   </td>
+  </table>
+</div><!-- fim do container-->
+
+<!-- icones para editar -->
+<div class="container text-center">
+  <div class="row text-center">
+      <div class="col-md-6"><a href="{% url 'comunicado_update' comunicado.id  %}">
+          <span class="fa-stack fa-3x" style="color:gray;">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+          </span></a>
+          <h4 class="service-heading"><a style="color:black;" href="{% url 'comunicado_update' comunicado.id %}">Editar</a></h4>
+      </div>
+      <div class="col-md-6"><a href="{% url 'gerar_comunicado' comunicado.id %}">
+          <span class="fa-stack fa-3x" style="color:green;">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
+          </span></a>
+          <h4 class="service-heading"><a style="color:black;" href="{% url 'gerar_comunicado' comunicado.id %}">Gerar comunicado p/ os pais</a></h4>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+  <div class="text-center">
+    <hr><h1 class="anos">Primeiro ano</h1>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' '1A'  %}"><h1>1A</h1></a></div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' '1B'  %}"><h1>1B</h1></a></div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' '1C'  %}"><h1>1C</h1></a></div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' '1E'  %}"><h1>1E</h1></a></div>
+    </div>
+  </div>
+
+  <!--Segundo ano -->
+  <div class="text-center">
+    <hr><h1 class="anos">Segundo ano</h1>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' '2A'  %}"><h1>2A</h1></a></div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' '2B'  %}"><h1>2B</h1></a></div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' '2C'  %}"><h1>2C</h1></a></div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' '2E'  %}"><h1>2E</h1></a></div>
+    </div>
+  </div>
+
+  <!-- Terceiro ano -->
+  <div class="text-center">
+    <hr><h1 class="anos">Terceiro ano</h1>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' '3A'  %}"><h1>3A</h1></a></div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' '3B'  %}"><h1>3B</h1></a></div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' '3E'  %}"><h1>3E</h1></a></div>
+    </div>
+  </div>
+
+  <!-- Subsequente -->
+  <div class="text-center">
+    <hr><h1 class="anos">Subsequente</h1>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' 'SubAI'  %}"><h1>Sub AI</h1></a></div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="well text-center"><a href="{% url 'fotovisor_turma' 'SubAII'  %}"><h1>Sub AII</h1></a></div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,6 @@
+UML:
+1. Diagrama de casos de uso
+2. Diagrama de classes
+
+MER:
+1. Diagrama entidade relacionamento

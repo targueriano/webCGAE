@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+        <div class="container">
+          <form action="." method="post">
+            {% csrf_token %}
+            <div class="input-group">
+              <input id="search_box" name="search_box" type="text" placeholder="Título, denunciado, servidor, data, medida ou artigo..." class="form-control">
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-success">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>Denunciado</th>
+                  <th>Artigo</th>
+                  <th>Medida sugerida</th>
+                  <th>Data</th>
+                  <th>Servidor</th>
+                  <th>Aplicada?</th>
+                  <th>Editar</th>
+                  <th>Ver</th>
+                </tr>
+              </thead>
+              <tbody>
+            {% for relatorio in relatorios %}
+                <tr>
+                  <td>{{ relatorio.titulo }}</td>
+                  <td><a href="{% url 'aluno_perfil' relatorio.denunciado.matricula %}">{{ relatorio.denunciado }}</a></td>
+                  <td>{{ relatorio.artigo }}</td>
+                  <td>{{ relatorio.medida_prevista }}</td>
+                  <td>{{ relatorio.data }}</td>
+                  <td>{{ relatorio.servidor }}</td>
+      	       {% if relatorio.medida_aplicada %}
+                  <td><span class="glyphicon glyphicon-thumbs-up"></span></td>
+      	       {% else %}
+      	          <td><span class="glyphicon glyphicon-thumbs-down"></span></td>
+      	       {% endif %}
+                  <td><a href="{% url 'relatorio_update' relatorio.pk %}">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                      </a>
+                  </td>
+                  <td><a href="{% url 'relatorio_detalhe' relatorio.id %}"<span class="glyphicon glyphicon-eye-open"></span></a></td>
+                </tr>
+            {% endfor %}
+              </tbody>
+            </table>
+          </div><!-- fim do table-responsive -->
+        </div><!-- fim do  col -->
+      </div><!-- fim do row -->
+    </div>
+
+
+{% endblock content %}

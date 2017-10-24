@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<div class="jumbotron">
+    <div class="container">
+      <form action="." method="post">
+        {% csrf_token %}
+        <div class="input-group">
+          <input id="search_box" name="search_box" type="text" placeholder="Tipo, aluno ou servidor..." class="form-control">
+          <div class="input-group-btn">
+            <button type="submit" class="btn btn-success">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Aluno</th>
+          <th>Data</th>
+          <th>Servidor</th>
+	        <th>Editar</th>
+          <th>Ver</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for comunicado in comunicados %}
+        <tr>
+          <td>{{ comunicado.tipo }}</td>
+          {% if comunicado.aluno %}
+            <td><a href="{% url 'aluno_perfil' comunicado.aluno.matricula %}">{{ comunicado.aluno }}</a></td>
+          {% else %}
+            <td>{{ comunicado.aluno }}</td>
+          {% endif %}
+          <td>{{ comunicado.data }}</td>
+          <td>{{ comunicado.servidor }}</td>
+        	<td>
+        		<a href="{% url 'comunicado_update' comunicado.pk %}">
+        			<span class="glyphicon glyphicon-pencil"></span>
+        		</a>
+        	</td>
+          <td>
+            <a href="{% url 'comunicado_detalhe' comunicado.pk %}">
+              <span class="glyphicon glyphicon-eye-open"></span>
+            </a>
+          </td>
+        </tr>
+    {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+{% endblock content %}

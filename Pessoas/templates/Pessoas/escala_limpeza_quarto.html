@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="text-center">
+    <hr><h1 class="anos">Alojamento {{ aloja }}</h1>
+    <hr>
+  </div>
+  <table class="table text-center table-hover table-responsive">
+    <thead>
+      <tr>
+        <th>Início</th>
+        <th>Fim</th>
+        <th>Lixos (banheiro, corredor e área externa)</th>
+        <th>Limpeza (banheiro, corredor e área externa)</th>
+        <th>Quarto</th>
+        <th>Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for quarto in quartoAD %}
+      <tr>
+       <td>{{ quarto.semana_inicio }}</td>
+       <td>{{ quarto.semana_fim }}</td>
+       <td>{{ quarto.lixo }}</td>
+       <td>{{ quarto.limpeza }}</td>
+       <td><a href="{% url 'Pessoas.views.alojamento_quarto' quarto.quarto %}">{{ quarto.quarto }}</a></td>
+       {% if quarto.nota == 1 %}
+         <td bgcolor="#FF0000">{{ quarto.nota }}</td>
+       {% elif quarto.nota == 2 %}
+         <td bgcolor="#FF6347">{{ quarto.nota }}</td>
+       {% elif quarto.nota == 3 %}
+         <td bgcolor="#FFA500">{{ quarto.nota }}</td>
+       {% elif quarto.nota == 4 %}
+         <td bgcolor="#9ACD32">{{ quarto.nota }}</td>
+       {% elif quarto.nota == 5 %}
+         <td bgcolor="#32CD32">{{ quarto.nota }}</td>
+       {% else %}
+         <td>{{ quarto.nota }}</td>
+       {% endif %}
+      </tr>
+  {% endfor %}
+   </tbody>
+  </table>
+
+  <table class="table text-center table-hover table-responsive">
+    <thead>
+      <tr>
+        <th>Início</th>
+        <th>Fim</th>
+        <th>Lixos (banheiro, corredor e área externa)</th>
+        <th>Limpeza (banheiro, corredor e área externa)</th>
+        <th>Quarto</th>
+        <th>Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for quarto in quartoBE %}
+      <tr>
+       <td>{{ quarto.semana_inicio }}</td>
+       <td>{{ quarto.semana_fim }}</a></td>
+       <td>{{ quarto.lixo }}</td>
+       <td>{{ quarto.limpeza }}</td>
+       <td><a href="{% url 'Pessoas.views.alojamento_quarto' quarto.quarto %}">{{ quarto.quarto }}</a></td>
+       {% if quarto.nota == 1 %}
+         <td bgcolor="#FF0000">{{ quarto.nota }}</td>
+       {% elif quarto.nota == 2 %}
+         <td bgcolor="#FF6347">{{ quarto.nota }}</td>
+       {% elif quarto.nota == 3 %}
+         <td bgcolor="#FFA500">{{ quarto.nota }}</td>
+       {% elif quarto.nota == 4 %}
+         <td bgcolor="#9ACD32">{{ quarto.nota }}</td>
+       {% elif quarto.nota == 5 %}
+         <td bgcolor="#32CD32">{{ quarto.nota }}</td>
+       {% else %}
+         <td>{{ quarto.nota }}</td>
+       {% endif %}
+      </tr>
+  {% endfor %}
+   </tbody>
+ </table>
+
+ <table class="table text-center table-hover table-responsive">
+   <thead>
+     <tr>
+       <th>Início</th>
+       <th>Fim</th>
+       <th>Lixos (banheiro, corredor e área externa)</th>
+       <th>Limpeza (banheiro, corredor e área externa)</th>
+       <th>Quarto</th>
+       <th>Nota</th>
+     </tr>
+   </thead>
+   <tbody>
+  {% for quarto in quartoCF %}
+      <tr>
+       <td>{{ quarto.semana_inicio }}</td>
+       <td>{{ quarto.semana_fim }}</a></td>
+       <td>{{ quarto.lixo }}</td>
+       <td>{{ quarto.limpeza }}</td>
+       <td><a href="{% url 'Pessoas.views.alojamento_quarto' quarto.quarto %}">{{ quarto.quarto }}</a></td>
+      {% if quarto.nota == 1 %}
+        <td bgcolor="#FF0000">{{ quarto.nota }}</td>
+      {% elif quarto.nota == 2 %}
+        <td bgcolor="#FF6347">{{ quarto.nota }}</td>
+      {% elif quarto.nota == 3 %}
+        <td bgcolor="#FFA500">{{ quarto.nota }}</td>
+      {% elif quarto.nota == 4 %}
+        <td bgcolor="#9ACD32">{{ quarto.nota }}</td>
+      {% elif quarto.nota == 5 %}
+        <td bgcolor="#32CD32">{{ quarto.nota }}</td>
+      {% else %}
+        <td>{{ quarto.nota }}</td>
+      {% endif %}
+      </tr>
+  {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col-md-4">
+    <table class="table table-bordered table-responsive">
+      <thead>
+        <tr>
+          <th class="text-center" bgcolor="#D3D3D3">1</th>
+          <th class="text-center" bgcolor="#C0C0C0">2</th>
+          <th class="text-center" bgcolor="#A9A9A9">3</th>
+          <th class="text-center" bgcolor="#808080">4</th>
+          <th class="text-center" bgcolor="#696969">5</th>
+        </tr>
+      </thead>
+      <tbody>
+         <tr>
+          <td class="text-center" bgcolor="#FF0000"><strong>Terrível</strong></td>
+          <td class="text-center" bgcolor="#FF6347"><strong>Ruim</strong></td>
+          <td class="text-center" bgcolor="#FFA500"><strong>Regular</strong></td>
+          <td class="text-center" bgcolor="#9ACD32"><strong>Bom</strong></td>
+          <td class="text-center" bgcolor="#32CD32"><strong>Ótimo</strong></td>
+         </tr>
+       </tbody>
+     </table>
+    </div>
+   </div>
+
+
+</div>
+
+{% endblock content %}

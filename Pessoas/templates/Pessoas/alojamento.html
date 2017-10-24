@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="text-center">
+    <hr><h1 class="anos">Alojamentos</h1>
+    <hr>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-2">
+      <div class="well text-center">
+          <h4><a href="{% url 'alojamento_quarto' '1A' %}">1A
+            <span class="badge">{{ lista.0 }}</span></a><br></h4>
+          <h4><a href="{% url 'alojamento_quarto' '1B' %}">1B
+            <span class="badge">{{ lista.1 }}</span></a><br></h4>
+          <h4><a href="{% url 'alojamento_quarto' '1C' %}">1C
+            <span class="badge">{{ lista.2 }}</span></a></h4>
+          <hr>
+          <h4><a href="{% url 'alojamento_quarto' '1D' %}">1D
+            <span class="badge">{{ lista.3 }}</span></a><br></h4>
+          <h4><a href="{% url 'alojamento_quarto' '1E' %}">1E
+            <span class="badge">{{ lista.4 }}</span></a><br></h4>
+          <h4><a href="{% url 'alojamento_quarto' '1F' %}">1F
+            <span class="badge">{{ lista.5 }}</span></a></h4>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="well text-center">
+          <h4><a href="{% url 'alojamento_quarto' '2A' %}">2A
+            <span class="badge">{{ lista.6 }}</span></a><br><h4>
+          <h4><a href="{% url 'alojamento_quarto' '2B' %}">2B
+            <span class="badge">{{ lista.7 }}</span></a><br><h4>
+          <h4><a href="{% url 'alojamento_quarto' '2C' %}">2C
+            <span class="badge">{{ lista.8 }}</span></a><h4>
+          <hr>
+          <h4><a href="{% url 'alojamento_quarto' '2D' %}">2D
+            <span class="badge">{{ lista.9 }}</span></a><br></h4>
+          <h4><a href="{% url 'alojamento_quarto' '2E' %}">2E
+            <span class="badge">{{ lista.10 }}</span></a><br></h4>
+          <h4><a href="{% url 'alojamento_quarto' '2F' %}">2F
+            <span class="badge">{{ lista.11 }}</span></a></h4>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="well text-center">
+          <h4><a href="{% url 'alojamento_quarto' '4A' %}">4A
+            <span class="badge">{{ lista.12 }}</span></a><br></h4>
+          <h4><a href="{% url 'alojamento_quarto' '4B' %}">4B
+            <span class="badge">{{ lista.13 }}</span></a><br></h4>
+          <h4><a href="{% url 'alojamento_quarto' '4C' %}">4C
+            <span class="badge">{{ lista.14 }}</span></a></h4>
+          <hr>
+          <h4><a href="{% url 'alojamento_quarto' '4D' %}">4D
+            <span class="badge">{{ lista.15 }}</span></a><br></h4>
+          <h4><a href="{% url 'alojamento_quarto' '4E' %}">4E
+            <span class="badge">{{ lista.16 }}</span></a><br></h4>
+          <h4><a href="{% url 'alojamento_quarto' '4F' %}">4F
+            <span class="badge">{{ lista.17 }}</span></a></h4>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h4><a href="{% url 'alojamento_quarto' '5A' %}">5A
+          <span class="badge">{{ lista.18}}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '5B' %}">5B
+          <span class="badge">{{ lista.19 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '5C' %}">5C
+          <span class="badge">{{ lista.20 }}</span></a></h4>
+        <hr>
+        <h4><a href="{% url 'alojamento_quarto' '5D' %}">5D
+          <span class="badge">{{ lista.21 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '5E' %}">5E
+          <span class="badge">{{ lista.22 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '5F' %}">5F
+          <span class="badge">{{ lista.23 }}</span></a></h4>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h4><a href="{% url 'alojamento_quarto' '6A' %}">6A
+          <span class="badge">{{ lista.24 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '6B' %}">6B
+          <span class="badge">{{ lista.25 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '6C' %}">6C
+          <span class="badge">{{ lista.26 }}</span></a></h4>
+        <hr>
+        <h4><a href="{% url 'alojamento_quarto' '6D' %}">6D
+          <span class="badge">{{ lista.27 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '6E' %}">6E
+          <span class="badge">{{ lista.28 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '6F' %}">6F
+          <span class="badge">{{ lista.29 }}</span></a></h4>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h4><a href="{% url 'alojamento_quarto' '7A' %}">7A
+          <span class="badge">{{ lista.30 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '7B' %}">7B
+          <span class="badge">{{ lista.31 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '7C' %}">7C
+          <span class="badge">{{ lista.32 }}</span></a></h4>
+        <hr>
+        <h4><a href="{% url 'alojamento_quarto' '7D' %}">7D
+          <span class="badge">{{ lista.33 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '7E' %}">7E
+          <span class="badge">{{ lista.34 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '7F' %}">7F
+          <span class="badge">{{ lista.35 }}</span></a></h4>
+      </div>
+    </div>
+
+  </div>
+<!-- Alojamentos do 8 ao 13  -->
+  <div class="row">
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h4><a href="{% url 'alojamento_quarto' '8A' %}">8A
+          <span class="badge">{{ lista.36 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '8B' %}">8B
+          <span class="badge">{{ lista.37 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '8C' %}">8C
+          <span class="badge">{{ lista.38 }}</span></a></h4>
+        <hr>
+        <h4><a href="{% url 'alojamento_quarto' '8D' %}">8D
+          <span class="badge">{{ lista.39 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '8E' %}">8E
+          <span class="badge">{{ lista.40 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '8F' %}">8F
+          <span class="badge">{{ lista.41 }}</span></a></h4>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h4><a href="{% url 'alojamento_quarto' '9A' %}">9A
+          <span class="badge">{{ lista.42 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '9B' %}">9B
+          <span class="badge">{{ lista.43 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '9C' %}">9C
+          <span class="badge">{{ lista.44 }}</span></a></h4>
+        <hr>
+        <h4><a href="{% url 'alojamento_quarto' '9D' %}">9D
+          <span class="badge">{{ lista.45 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '9E' %}">9E
+          <span class="badge">{{ lista.46 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '9F' %}">9F
+          <span class="badge">{{ lista.47 }}</span></a></h4>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h4><a href="{% url 'alojamento_quarto' '10A' %}">10A
+          <span class="badge">{{ lista.48 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '10B' %}">10B
+          <span class="badge">{{ lista.49 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '10C' %}">10C
+          <span class="badge">{{ lista.50 }}</span></a></h4>
+        <hr>
+        <h4><a href="{% url 'alojamento_quarto' '10D' %}">10D
+          <span class="badge">{{ lista.51 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '10E' %}">10E
+          <span class="badge">{{ lista.52 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '10F' %}">10F
+          <span class="badge">{{ lista.53 }}</span></a></h4>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h4><a href="{% url 'alojamento_quarto' '11A' %}">11A
+          <span class="badge">{{ lista.54 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '11B' %}">11B
+          <span class="badge">{{ lista.55 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '11C' %}">11C
+          <span class="badge">{{ lista.56 }}</span></a></h4>
+        <hr>
+        <h4><a href="{% url 'alojamento_quarto' '11D' %}">11D
+          <span class="badge">{{ lista.57 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '11E' %}">11E
+          <span class="badge">{{ lista.58 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '11F' %}">11F
+          <span class="badge">{{ lista.59 }}</span></a></h4>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h4><a href="{% url 'alojamento_quarto' '12A' %}">12A
+          <span class="badge">{{ lista.60 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '12B' %}">12B
+          <span class="badge">{{ lista.61 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '12C' %}">12C
+          <span class="badge">{{ lista.62 }}</span></a></h4>
+        <hr>
+        <h4><a href="{% url 'alojamento_quarto' '12D' %}">12D
+          <span class="badge">{{ lista.63 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '12E' %}">12E
+          <span class="badge">{{ lista.64 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '12F' %}">12F
+          <span class="badge">{{ lista.65 }}</span></a></h4>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h4><a href="{% url 'alojamento_quarto' '13A' %}">13A
+          <span class="badge">{{ lista.66 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '13B' %}">13B
+          <span class="badge">{{ lista.67 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '13C' %}">13C
+          <span class="badge">{{ lista.68 }}</span></a></h4>
+        <hr>
+        <h4><a href="{% url 'alojamento_quarto' '13D' %}">13D
+          <span class="badge">{{ lista.69 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '13E' %}">13E
+          <span class="badge">{{ lista.70 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '13F' %}">13F
+          <span class="badge">{{ lista.71 }}</span></a></h4>
+      </div>
+    </div>
+
+  </div>
+<!-- Alojas do 14 ao 15 -->
+  <div class="row">
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h4><a href="{% url 'alojamento_quarto' '14A' %}">14A
+          <span class="badge">{{ lista.72 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '14B' %}">14B
+          <span class="badge">{{ lista.73 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '14C' %}">14C
+          <span class="badge">{{ lista.74 }}</span></a></h4>
+        <hr>
+        <h4><a href="{% url 'alojamento_quarto' '14D' %}">14D
+          <span class="badge">{{ lista.75 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '14E' %}">14E
+          <span class="badge">{{ lista.76 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '14F' %}">14F
+          <span class="badge">{{ lista.77 }}</span></a></h4>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="well text-center">
+        <h4><a href="{% url 'alojamento_quarto' '15A' %}">15A
+          <span class="badge">{{ lista.78 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '15B' %}">15B
+          <span class="badge">{{ lista.79 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '15C' %}">15C
+          <span class="badge">{{ lista.80 }}</span></a></h4>
+        <hr>
+        <h4><a href="{% url 'alojamento_quarto' '15D' %}">15D
+          <span class="badge">{{ lista.81 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '15E' %}">15E
+          <span class="badge">{{ lista.82 }}</span></a><br></h4>
+        <h4><a href="{% url 'alojamento_quarto' '15F' %}">15F
+          <span class="badge">{{ lista.83 }}</span></a></h4>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+{% endblock content %}

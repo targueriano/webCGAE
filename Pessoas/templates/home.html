@@ -1,0 +1,1067 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<div class="container">
+  <div class="text-center">
+    <hr><h1 class="anos">Primeiro ano</h1>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal1A"><h2>1A</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal1A" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>1A</strong></center>
+                  <center>Técnico em Agropecuária</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            <tr>
+                              {% if aluno.turma == '1A' %}
+                                {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                    <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                    <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                        name="perfil">{{ aluno.nome }}</a></td>
+                                    <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                    <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                                {% else %}
+                                    <td>{{ aluno.matricula }}</td>
+                                    <td><a href="{% url 'aluno_perfil' aluno.matricula %}" method="post"
+                                        name="perfil">{{ aluno.nome }}</a></td>
+                                    <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                    <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                                {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 1B -->
+
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal1B"><h2>1B</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal1B" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>1B</strong></center>
+                  <center>Técnico em Agropecuária</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == '1B' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- 1C -->
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal1C"><h2>1C</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal1C" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>1C</strong></center>
+                  <center>Técnico em Agropecuária</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == '1C' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 1E -->
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal1E"><h2>1E</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal1E" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>1E</strong></center>
+                  <center>Técnico em Agroecologia</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == '1E' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <hr><h1 class="anos">Segundo ano</h1>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal2A"><h2>2A</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal2A" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>2A</strong></center>
+                  <center>Técnico em Agropecuária</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == '2A' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2B -->
+
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal2B"><h2>2B</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal2B" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>2B</strong></center>
+                  <center>Técnico em Agropecuária</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == '2B' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- 1C -->
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal2C"><h2>2C</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal2C" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>2C</strong></center>
+                  <center>Técnico em Agropecuária</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == '2C' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 1E -->
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal2E"><h2>2E</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal2E" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>2E</strong></center>
+                  <center>Técnico em Agroecologia</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == '2E' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <hr><h1 class="anos">Terceiro ano</h1>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal3A"><h2>3A</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal3A" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>3A</strong></center>
+                  <center>Técnico em Agropecuária</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == '3A' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 1B -->
+
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal3B"><h2>3B</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal3B" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>3B</strong></center>
+                  <center>Técnico em Agropecuária</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == '3B' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- 3C -->
+    <div class="col-md-3">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal3C"><h2>3C</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal3C" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>3C</strong></center>
+                  <center>Técnico em Agropecuária</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == '3C' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3E -->
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#Modal3E"><h2>3E</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="Modal3E" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>3E</strong></center>
+                  <center>Técnico em Agroecologia</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == '3E' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- fim do div -->
+
+  <div class="text-center">
+    <hr><h1 class="anos">Subsequente</h1>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#ModalSubAI"><h2>Sub AI</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="ModalSubAI" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>Sub AI</strong></center>
+                  <center>Técnico em Agropecuária</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == 'SubAI' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 1B -->
+
+    <div class="col-md-3 col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading text-center">
+          <button type="button" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#ModalSubAII"><h2>SubAII</h2></button>
+        </div>
+
+        <!-- Modal -->
+        <div id="ModalSubAII" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><center><strong>SubAII</strong></center>
+                  <center>Técnico em Agropecuária</center></h3>
+              </div>
+              <div class="modal-body">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Matrícula</th>
+                          <th>Nome</th>
+                          <th>Média geral</th>
+                          <th>Comportamento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for aluno in alunos %}
+                            {% if aluno.turma == 'SubAII' %}
+                            <tr>
+                              {% if aluno.perfil_aluno.nota_ensino < 7.0 or aluno.perfil_aluno.nota_comportamento < 7.0%}
+                                  <td style="background-color:#FEB6AB;">{{ aluno.matricula }}</td>
+                                  <td style="background-color:#FEB6AB;"><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td style="background-color:#FEB6AB;">{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% else %}
+                                  <td>{{ aluno.matricula }}</td>
+                                  <td><a href="{% url 'aluno_perfil' aluno.pk %}" method="post"
+                                      name="perfil">{{ aluno.nome }}</a></td>
+                                  <td>{{aluno.perfil_aluno.nota_ensino}}</td>
+                                  <td>{{aluno.perfil_aluno.nota_comportamento}}</td>
+                              {% endif %}
+                            </tr>
+                            {% endif %}
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--Top 10 -->
+
+  <div class="jumbotron">
+    <div class="well">
+    <center><h1 class="top">Top 20</h1></center>
+    </div>
+    <div class="row">
+      <!-- Nota -->
+      <div class="col-md-6 col-md-12">
+        <div class="text-center">
+          <h3 class="top">Nota</h3>
+        </div>
+        <div class="panel panel-default">
+
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Nº</th>
+                    <th>Matrícula</th>
+                    <th>Nome</th>
+                    <th>Média geral</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for top in top_ensino %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ top.aluno.matricula }}</td>
+                    <td><a href="{% url 'aluno_perfil' top.aluno.matricula %} " method="post"
+                          name="perfil">{{ top.aluno.nome }}</a></td>
+                      <td>{{top.nota_ensino}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Comportamento -->
+      <div class="col-md-6 col-md-12">
+        <div class="text-center">
+          <h3 class="top">Comportamento</h3>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Nº</th>
+                    <th>Matrícula</th>
+                    <th>Nome</th>
+                    <th>Comportamento</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for top in top_comportamento %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ top.aluno.matricula }}</td>
+                        <td><a href="{% url 'aluno_perfil' top.aluno.matricula %}" method="post"
+                            name="perfil">{{ top.aluno.nome }}</a></td>
+                        <td>{{top.nota_comportamento}}</td>
+                      </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!--Fim do row -->
+    <!-- Botao para mostrar lista completa -->
+
+
+    <!-- fim da lista completa -->
+
+
+  </div><!-- Fim do jumbotron -->
+</div><!-- Fim  -->
+
+
+{% endblock content %}

@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="well text-center"><h1 class="anos">Registro da denúncia</h1></div>
+
+<div class="container">
+
+    <div class="row"><h4>
+      <div class="col-md-6">
+        <div class="list-group">
+          <a class="list-group-item"><b>DENUNCIANTE</b>: {{ relatorio.denunciante }}</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="list-group">
+          <a class="list-group-item"><b>DENUNCIADO</b>: {{ relatorio.denunciado }}</a>
+          <a class="list-group-item"><b>CURSO</b>: {{ dados.curso }}</a>
+          <a class="list-group-item"><b>TURMA</b>: {{ aluno.turma }}</a>
+          <a class="list-group-item"><b>TURNO</b>: {{ dados.forma }}</a>
+        </div>
+      </div>
+    </div><!-- fim do row-->
+  </h4>
+
+  <h1 class="anos text-center">Denúncia</h1>
+  <table class="table table-responsive table-hover">
+    <td><h4 style="text-align: justify;"><p>{{ relatorio.texto }}
+      Diante dos fatos narrados, verifica-se que o conteúdo da denúncia refere-se a
+      {% if relatorio.artigo > 'Art.20' %} infração exposta {% else %} ato
+      de indisciplina exposto {% endif %} no {{ relatorio.artigo }},
+      do Regulamento de Conduta Discente. A denúncia será encaminhada para apuração pelos órgãos competentes.
+    </h4></p>
+   </td>
+  </table>
+
+  <h1 class="anos text-center">Processo</h1>
+  <table class="table table-responsive table-hover">
+    <td>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <div class="list-group">
+          <a class="list-group-item"><b>Gerado denúncia?</b> {% if relatorio.denuncia %} Sim {% else %} Não {% endif %}</a>
+          <a class="list-group-item"><b>Comunicado ao discente?</b> {% if relatorio.comunicado_discente %} Sim {% else %} Não {% endif %}</a>
+          <a class="list-group-item"><b>Protocolado?</b> {% if relatorio.protocolado %} Sim {% else %} Não {% endif %}</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="list-group">
+          <a class="list-group-item"><b>Data da denúncia</b>: {{ relatorio.data }}</a>
+          <a class="list-group-item"><b>Medida aplicada?</b> {% if relatorio.medida_aplicada %} Sim {% else %} Não {% endif %}</a>
+          <a class="list-group-item"><b>Qual...?</b> {{ relatorio.tipo_medida }}</a>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div><!-- fim do row para o processo-->
+    <!-- inicio do progress bar -->
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow={{cont}}
+        aria-valuemin="0" aria-valuemax="100" style="width:{{cont}}%">
+           {{ cont }}%
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+    <!-- fim do progress bar -->
+    </td>
+  </table><!-- fim da parte do processo-->
+
+
+</div><!-- fim do container-->
+
+<!-- icones para editar, gerar denuncia e gerar comunicacao ao discente -->
+<div class="container text-center">
+  <div class="row text-center">
+      <div class="col-md-4"><a href="{% url 'relatorio_update' relatorio.id  %}">
+          <span class="fa-stack fa-3x" style="color:black;">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+          </span></a>
+          <h4 class="service-heading"><a style="color:black;" href="{% url 'relatorio_update' relatorio.id %}">Editar</a></h4>
+      </div>
+      {% if relatorio.denuncia %}
+      <div class="col-md-4">
+          <span class="fa-stack fa-3x" style="color:red;">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading" style="color:black;">Denúncia gerada</h4>
+      </div>
+      {% else %}
+      <div class="col-md-4"><a href="{% url 'gerar_denuncia' relatorio.id %}">
+          <span class="fa-stack fa-3x" style="color:red;">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
+          </span></a>
+          <h4 class="service-heading"><a style="color:black;" href="{% url 'gerar_denuncia' relatorio.id %}">Gerar denúncia</a></h4>
+      </div>
+      {% endif %}
+      {% if relatorio.comunicado_discente %}
+      <div class="col-md-4">
+          <span class="fa-stack fa-3x" style="color:green;">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading" style="color:black;">Comunicação ao discente já efetuada</h4>
+      </div>
+      {% else %}
+      <div class="col-md-4"><a href="{% url 'gerar_comunicacao' relatorio.id %}">
+          <span class="fa-stack fa-3x" style="color:green;">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-file-pdf-o fa-stack-1x fa-inverse"></i>
+          </span></a>
+          <h4 class="service-heading"><a style="color:black;" href="{% url 'gerar_comunicacao' relatorio.id %}">Gerar comunicação ao discente</a></h4>
+      </div>
+      {% endif %}
+  </div>
+</div>
+
+{% endblock %}

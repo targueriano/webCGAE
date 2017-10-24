@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="well text-center">
+    <h1 class="anos">Curso do aluno</h1>
+</div>
+
+<div class="container">
+  <div class="well">
+  <div class="row">
+    <div class="col-md-12">
+      <form method="POST" class="post-form">{% csrf_token %}
+        {{ form|crispy }}
+        <div class="row">
+          <div class="col-md-12">
+            <a href="{% url 'aluno_lista' %}" class="btn btn-danger pull-right">
+                <i class="fa fa-times"></i> Cancelar
+            </a>
+            <button type="submit" class="btn btn-success pull-right" value="Save">
+                <i class="fa fa-floppy-o"></i> Salvar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+ </div>
+ </div>
+</div>
+
+
+{% endblock content %}

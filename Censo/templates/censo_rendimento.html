@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="well text-center">
+  <h1 class="anos">Rendimento escolar [{{ano_corrente}}] e Movimentação
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <canvas id="situacaoAnual" max-width="150" max-height="150"></canvas>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <canvas id="movimentacao" max-width="150" max-height="150"></canvas>
+    </div>
+  </div>
+</div>
+<br>
+<div class="well text-center">
+  <h1 class="anos">Número de alunos com dificuldade por disciplina
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <canvas id="dificuldade" max-width="150" max-height="150"></canvas>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+{% endblock content %}
+
+{% block scripts %}
+
+<script>
+var ctx = document.getElementById("situacaoAnual");
+//var names = JSON.parse('{{ names|safe }}');
+var ap1 = JSON.parse('{{ aprovados_s|safe }}');
+var ap2 = JSON.parse('{{ aprovados_c|safe }}');
+var cd = JSON.parse('{{ com_dependencia|safe }}');
+var rep = JSON.parse('{{ reprovados|safe }}');
+var situacaoAnual = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Aprovados sem exame', 'Aprovados com exame', 'Com dependência','Reprovados'],
+        datasets: [{
+            label: "Alunos",
+            data: [ap1, ap2, cd, rep],
+            backgroundColor: [
+                'rgba(50, 205, 50, 0.8)',
+                'rgba(255, 215, 0, 0.8)',
+                'rgba(255, 0, 0, 0.8)',
+                'rgba(128, 128, 128, 0.8)',
+
+            ],
+            borderColor: [
+                'rgba(0,0,0,1)',
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+
+});
+</script>
+
+<script>
+var ctx = document.getElementById("movimentacao");
+//var names = JSON.parse('{{ names|safe }}');
+var movimento = JSON.parse('{{ movimento|safe }}');
+var mov = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Faleceu', 'Transferido', 'Abandonou'],
+        datasets: [{
+            label: "Alunos",
+            data: movimento,
+            backgroundColor: [
+                'rgba(0, 0, 0, 0.8)',
+                'rgba(70,130,180, 0.8)',
+                'rgba(169, 169, 169, 0.8)',
+
+            ],
+            borderColor: [
+                'rgba(0,0,0,1)',
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+
+});
+</script>
+
+<script>
+var ctx = document.getElementById("dificuldade");
+//var names = JSON.parse('{{ names|safe }}');
+var disciplina = JSON.parse('{{ disciplina|safe }}');
+var qtd_alunos = JSON.parse('{{ qtd_al|safe }}');
+
+var situacaoAnual = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: disciplina,
+        datasets: [{
+            label: "Alunos",
+            data: qtd_alunos,
+            borderWidth: 1
+        }]
+    },
+
+});
+</script>
+
+
+
+{% endblock %}

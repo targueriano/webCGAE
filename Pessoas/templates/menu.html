@@ -1,0 +1,108 @@
+{% load staticfiles %}
+<!-- menu -->
+<nav class="navbar navbar-default navbar-fixed-top">
+ <div class="container-fluid">
+   <div class="navbar-header">
+       <a class="navbar-brand" href="/"><img class="img-responsive" style="width:50%" src="{% static 'Pessoas/logoWebCGAE.png' %}" alt="logo"></a>
+       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+   </div>
+   <div class="collapse navbar-collapse" id="collapse1">
+     <ul class="nav navbar-nav">
+
+       <li><a href="/">HOME</a></li>
+
+       <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="">ALUNO
+          <span class="caret"></span>
+          <span class="badge">{{count_alunos}}</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'aluno_lista' %}">LISTA</a></li>
+            {% if perms.auth.add_aluno %}
+            <li class="dropdown-submenu">
+              <a class="menu dropdown-toggle" data-toggle="dropdown" tabindex="-1" href="">ADICIONAR
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a tabindex="-1" href="{% url 'aluno_add' %}">Aluno</a></li>
+                <li><a tabindex="-1" href="{% url 'aluno_add_perfil' %}">Perfil</a></li>
+                <li><a tabindex="-1" href="{% url 'aluno_add_familia' %}">Família</a></li>
+                <li><a tabindex="-1" href="{% url 'aluno_add_curso' %}">Curso</a></li>
+              </ul>
+            </li>
+            {% endif %}
+          </ul>
+       </li>
+
+       <li><a href="/fotovisor/">FOTOVISOR</a></li>
+
+       <li><a href="/alojamento/">ALOJAMENTOS</a></li>
+
+       <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="">ESCALA
+          <span class="caret"></span> </a>
+          <ul class="dropdown-menu">
+            <li><a href="/escala/limpeza/">LIMPEZA</a></li>
+            <li><a href="/escala/cgae/">SERVIDORES</a></li>
+          </ul>
+       </li>
+
+
+       <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="">ATENDIMENTO
+          <span class="caret"></span>  <span class="badge">{{ count_total }}</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'educacional_lista' %}">EDUCACIONAL</a></li>
+            <li><a href="{% url 'prontuario_lista' %}">AMBULATORIAL</a></li>
+            <li class="dropdown-submenu">
+              <a class="menu dropdown-toggle" data-toggle="dropdown" href="">COMUNICADOS
+              <span class="caret"></span>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'comunicado_lista' %}">Consultar</a></li>
+                <li><a href="{% url 'comunicado_novo' %}">Adicionar</a></li>
+              </ul>
+            </li>
+          </ul>
+       </li>
+
+       <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="">RELATÓRIOS
+          <span class="caret"></span>  <span class="badge">{{ count }}</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'relatorio_lista' %}">CONSULTAR</a></li>
+            <li><a href="{% url 'relatorio_novo' %}">ADICIONAR</a></li>
+          </ul>
+       </li>
+
+       <li class="dropdown">
+         <a class="dropdown-toggle" data-toggle="dropdown" href="">CENSO
+           <span class="caret"></span>
+         </a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'censo_alunos' %}">Perfil dos alunos</a></li>
+            <li><a href="{% url 'censo_rendimento' %}">Rendimento escolar e movimentação</a></li>
+            <li><a href="{% url 'censo_cidades' %}">Alunos por cidade</a></li>
+          </ul>
+       </li>
+
+     </ul>
+     <ul class="nav navbar-nav navbar-right">
+       <li><a href="{% url 'admin:index' %}">
+          <span class="glyphicon glyphicon-log-in"></span>
+           {%if not user.is_authenticated  %}
+                  Login
+                {% else %}
+              <span style="color:blue">
+                  {{ user }}
+              </span>
+                {% endif %}
+            </a>
+        </li>
+     </ul>
+   </div><!-- fim do collapse-->
+ </div>
+</nav>
+<br><br>
