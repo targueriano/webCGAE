@@ -196,7 +196,7 @@ def lista_alunos(request):
 
 
     context = {
-                'alunos':alunos,
+        'alunos':alunos,
     }
     return render(request, 'Pessoas/alunos_lista.html', context)
 
