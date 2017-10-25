@@ -60,6 +60,19 @@
             </table>
           </div><!-- fim do table-responsive -->
         </div><!-- fim do  col -->
+        <p>Página {{ relatorios.number }} de {{ relatorios.paginator.num_pages }}.</p>
+        <ul class="pagination" >
+
+            {% if relatorios.has_previous %}
+                <li><a href="?page={{ relatorios.previous_page_number }}">anterior</a></li>
+            {% endif %}
+
+            {% if relatorios.has_next %}
+                <li><a href="?page={{ relatorios.next_page_number }}">próxima</a></li>
+            {% endif %}
+
+        </ul>
+
       </div><!-- fim do row -->
     </div>
 

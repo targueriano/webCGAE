@@ -58,6 +58,18 @@
       </tbody>
     </table>
   </div>
+  <p>Página {{ educacional.number }} de {{ educacional.paginator.num_pages }}.</p>
+  <ul class="pagination" >
+
+      {% if educacional.has_previous %}
+          <li><a href="?page={{ educacional.previous_page_number }}">anterior</a></li>
+      {% endif %}
+
+      {% if educacional.has_next %}
+          <li><a href="?page={{ educacional.next_page_number }}">próxima</a></li>
+      {% endif %}
+
+  </ul>
 </div>
 
 

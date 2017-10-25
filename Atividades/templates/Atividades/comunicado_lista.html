@@ -56,6 +56,19 @@
       </tbody>
     </table>
   </div>
+  <p>Página {{ comunicados.number }} de {{ comunicados.paginator.num_pages }}.</p>
+  <ul class="pagination" >
+
+      {% if comunicados.has_previous %}
+          <li><a href="?page={{ comunicados.previous_page_number }}">anterior</a></li>
+      {% endif %}
+
+
+      {% if comunicados.has_next %}
+          <li><a href="?page={{ comunicados.next_page_number }}">próxima</a></li>
+      {% endif %}
+
+  </ul>
 </div>
 
 

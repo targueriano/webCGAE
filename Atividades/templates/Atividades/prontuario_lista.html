@@ -58,7 +58,21 @@
       </tbody>
     </table>
   </div>
+  <p>Página {{ prontuarios.number }} de {{ prontuarios.paginator.num_pages }}.</p>
+  <ul class="pagination" >
+
+      {% if prontuarios.has_previous %}
+          <li><a href="?page={{ prontuarios.previous_page_number }}">anterior</a></li>
+      {% endif %}
+
+      {% if prontuarios.has_next %}
+          <li><a href="?page={{ prontuarios.next_page_number }}">próxima</a></li>
+      {% endif %}
+
+  </ul>
+
 </div>
+
 
 
 {% endblock content %}

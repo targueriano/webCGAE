@@ -20,6 +20,7 @@ from django.shortcuts import redirect
 import numpy as np
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 # Create your views here.
 
@@ -167,7 +168,7 @@ def fotovisor_turma(request, turma):
 
 
 def lista_alunos(request):
-    alunos = Aluno.objects.all().order_by('-nome')
+    alunos = Aluno.objects.all()
 
     var_get_search = request.POST.get('search_box')
 
@@ -178,6 +179,22 @@ def lista_alunos(request):
             | Q(cidade=var_get_search)
             | Q(alojamento=var_get_search)
         )
+
+    paginator = Paginator(alunos, 50)
+
+    # Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # Se o page request (9999) está fora da lista, mostre a última página.
+    try:
+        alunos = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        alunos = paginator.page(paginator.num_pages)
+
+
     context = {
                 'alunos':alunos,
     }

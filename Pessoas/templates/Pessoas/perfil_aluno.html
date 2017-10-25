@@ -6,7 +6,11 @@
       <div class="jumbotron">
         <div class="col-md-3">
           <div class="text-center">
+            {% if aluno.perfil_aluno.foto %}
             <img src="{{ aluno.perfil_aluno.foto.url }}" class="img-circle" alt="Sem foto" width="180" height="180">
+            {% else %}
+            <img src="#" class="img-circle" alt="Sem foto" width="180" height="180">
+            {% endif %}
             <h3>{{ aluno.nome }}</h3>
           </div>
         </div>

@@ -56,6 +56,20 @@
       {% endfor %}
         </tbody>
       </table>
+
+      <p>Página {{ alunos.number }} de {{ alunos.paginator.num_pages }}.</p>
+      <ul class="pagination" >
+
+          {% if alunos.has_previous %}
+              <li><a href="?page={{ alunos.previous_page_number }}">anterior</a></li>
+          {% endif %}
+
+          {% if alunos.has_next %}
+              <li><a href="?page={{ alunos.next_page_number }}">próxima</a></li>
+          {% endif %}
+
+      </ul>
+
     </div>
 
 {% endblock content %}

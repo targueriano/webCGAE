@@ -12,6 +12,7 @@ from .models import (Vistoria, Comunicados, Prontuario, Relatorio,
                                  Educacional_detalhe)
 
 from django.views.generic import CreateView, UpdateView, ListView, DetailView
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import redirect
@@ -336,6 +337,7 @@ def comunicado_novo(request):
 @login_required(login_url='/accounts/login/')
 def prontuario_lista(request):
     prontuarios = Prontuario.objects.all()
+    paginator = Paginator(prontuarios, 50)
 
     var_get_search = request.POST.get('search_box')
 
@@ -343,6 +345,20 @@ def prontuario_lista(request):
         prontuarios = prontuarios.filter(
               Q(aluno__nome__icontains=var_get_search)
         )
+
+    # Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # Se o page request (9999) está fora da lista, mostre a última página.
+    try:
+        prontuarios = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        prontuarios = paginator.page(paginator.num_pages)
+
+
     context = {
         'prontuarios':prontuarios,
     }
@@ -374,6 +390,21 @@ def educacional_lista(request):
               Q(aluno__nome__icontains=var_get_search)
 
         )
+
+    paginator = Paginator(educacional, 50)
+
+    # Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # Se o page request (9999) está fora da lista, mostre a última página.
+    try:
+        educacional = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        educacional = paginator.page(paginator.num_pages)
+
     context = {
         'educacional':educacional,
     }
@@ -455,6 +486,7 @@ def escala_cgae_select(request, pk):
 @login_required(login_url='/accounts/login/')
 def lista_relatorios(request):
     relatorios = Relatorio.objects.all().order_by('-data')
+    paginator = Paginator(relatorios, 50)
     #alunos = Aluno.objects.all()
 
     var_get_search = request.POST.get('search_box')
@@ -468,6 +500,19 @@ def lista_relatorios(request):
             | Q(servidor__username__icontains=var_get_search)
             | Q(titulo__icontains=var_get_search)
         )
+
+    # Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # Se o page request (9999) está fora da lista, mostre a última página.
+    try:
+        relatorios = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        relatorios = paginator.page(paginator.num_pages)
+
 
     context = {'current_user': request.user,
                'relatorios': relatorios,
@@ -555,6 +600,20 @@ def comunicados(request):
         comunicados = Comunicados.objects.all().order_by('-data')
     except:
         comunicados = None
+
+    paginator = Paginator(comunicados, 50)
+
+    # Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # Se o page request (9999) está fora da lista, mostre a última página.
+    try:
+        comunicados = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        comunicados = paginator.page(paginator.num_pages)
 
     var_get_search = request.POST.get('search_box')
 
