@@ -16,6 +16,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import AccessMixin
 from django.shortcuts import redirect
+from django.core.urlresolvers import reverse_lazy
 
 import numpy as np
 import skfuzzy as fuzz
@@ -40,19 +41,28 @@ class Aluno_update(RequerPoder, UpdateView):
 class Aluno_add(RequerPoder, CreateView):
     model = Aluno
     fields = ('matricula', 'nome', 'nascimento', 'telefone', 'cidade', 'turma', 'alojamento', 'emancipado')
+    success_url = 'sucesso'
+
 
 class Aluno_add_perfil(RequerPoder, CreateView):
     model = Perfil_do_Aluno
     fields = '__all__'
+    success_url = reverse_lazy('sucesso')
+
+
 
 class Aluno_update_perfil(RequerPoder, UpdateView):
     model = Perfil_do_Aluno
     fields = '__all__'
 
 
+
 class Aluno_add_familia(RequerPoder, CreateView):
     model = Familia
     fields = '__all__'
+    success_url = reverse_lazy('sucesso')
+
+
 
 class Aluno_update_familia(RequerPoder, UpdateView):
     model = Familia
@@ -62,6 +72,9 @@ class Aluno_update_familia(RequerPoder, UpdateView):
 class Aluno_add_curso(RequerPoder, CreateView):
     model = Curso
     fields = '__all__'
+    success_url = reverse_lazy('sucesso')
+
+
 
 class Aluno_update_curso(RequerPoder, UpdateView):
     model = Curso
@@ -309,3 +322,7 @@ def perfil_aluno(request, pk):
                }
 
     return render(request, 'Pessoas/perfil_aluno.html', context)
+
+
+def aluno_add_sucesso(request):
+    return render(request, 'Pessoas/aluno_add_sucesso.html', )

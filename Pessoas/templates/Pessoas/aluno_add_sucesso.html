@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+<h2 style=" color:green; text-align:center;">Adicionado com sucesso!</h2>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-5">
+      <div class="btn-group btn-group-lg">
+       <a href="{% url 'aluno_add' %}" class="btn btn-info">Novo aluno</a>
+       <a href="{% url 'aluno_add_perfil' %}" class="btn btn-success">Add Perfil</a>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="btn-group btn-group-lg">
+       <a href="{% url 'aluno_add_familia' %}" class="btn btn-warning">Add Família</a>
+       <a href="{% url 'aluno_add_curso' %}" class="btn btn-primary">Add Curso</a>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+
+{% endblock content %}

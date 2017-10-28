@@ -47,6 +47,11 @@ aluno_patterns = [
         regex=r'^atualizar/familia/(?P<pk>\d+)/$',
         view=views.Aluno_update_familia.as_view(),
         name='aluno_update_familia'
+    ),
+    url(
+        regex=r'^adicionar/sucesso/$',
+        view=views.aluno_add_sucesso,
+        name="sucesso"
     )
 
 ]

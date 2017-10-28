@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
 {% block content %}
 
 <div class="well text-center">
@@ -10,7 +12,11 @@
     {% for aluno in alunos %}
     <div class="col-md-3">
         <a href="{% url 'aluno_perfil' aluno.matricula %}" method="post" name="perfil">
+          {% if aluno.perfil_aluno.foto %}
           <img src={{aluno.perfil_aluno.foto.url}} class="img-rounded" width="146" height="146"></a>
+          {% else %}
+          <img src="{% static 'Pessoas/user.png' %}" alt="Sem foto" class="img-rounded" width="146" height="146"></a>
+          {% endif %}
         <h5>{{ aluno.nome}}</h5>
     </div>
     {% endfor %}
