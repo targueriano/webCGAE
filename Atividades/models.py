@@ -220,7 +220,6 @@ class Relatorio(models.Model):
     texto = models.TextField(max_length=100000, help_text='Os fatos ocorridos.')
     data = models.DateField()
     servidor = models.ForeignKey(User, help_text='Servidor que está elaborando a denúncia.')
-    avaliado = models.BooleanField(default=False)
     denuncia = models.BooleanField('Escrito denúncia', default=False)
     comunicado_discente = models.BooleanField('Comunicado ao discente', default=False)
     encaminhado_conciliacao = models.BooleanField('Encaminhado para conciliação', default=False)
@@ -491,6 +490,7 @@ class Educacional(models.Model):
     aluno = models.OneToOneField(Aluno, primary_key=True)
 
     class Meta:
+        ordering = ['aluno__nome']
         verbose_name = "Atendimento educacional"
         verbose_name_plural = "Atendimentos educacionais"
 
@@ -524,6 +524,7 @@ class Prontuario(models.Model):
         return str(self.aluno)
 
     class Meta:
+        ordering = ['aluno__nome']
         verbose_name = 'Prontuário'
         verbose_name_plural = 'Prontuários'
 

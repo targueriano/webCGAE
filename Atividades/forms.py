@@ -22,7 +22,7 @@ class RelatorioForm(forms.ModelForm):
         fields = '__all__'
         exclude = ('data','controle','denuncia', 'protocolado',
                    'comunicado_discente', 'medida_aplicada','tipo_medida',
-                   'avaliado', 'encaminhado_conciliacao')
+                   'encaminhado_conciliacao')
 
 class ProntuarioDetalheForm(forms.ModelForm):
 

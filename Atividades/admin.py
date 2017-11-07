@@ -10,12 +10,12 @@ Escala_Servidores, Limpeza, Prontuario, Prontuario_detalhe, Educacional, Educaci
 class RelatorioAdmin(admin.ModelAdmin):
     model = Relatorio
     list_display = ['denunciante','denunciado', 'titulo', 'texto', 'artigo', 'medida_prevista',
-                    'data', 'servidor', 'avaliado', 'denuncia',
+                    'data', 'servidor', 'denuncia',
                     'comunicado_discente','encaminhado_conciliacao', 'protocolado',
                     'medida_aplicada', 'tipo_medida']
 
-    list_filter = [ 'denunciante', 'denunciado', 'servidor' , 'medida_prevista', 'data', 'medida_aplicada',
-                    'avaliado', 'denuncia', 'comunicado_discente',
+    list_filter = [ 'denunciante', 'servidor' , 'medida_prevista', 'data', 'medida_aplicada',
+                    'denuncia', 'comunicado_discente',
                     'encaminhado_conciliacao', 'protocolado',
                     'tipo_medida']
     search_fields = ['denunciado__nome', 'denunciante']
@@ -62,7 +62,6 @@ class Educacional_detalheAdmin(admin.TabularInline):
 class EducacionalAdmin(admin.ModelAdmin):
     model = Educacional
     list_display = ['aluno',]
-    list_filter = ['aluno', ]
     save_on_top = True
     actions_on_top = True
     search_fields = ['aluno__nome']
