@@ -112,12 +112,30 @@ escala_patterns = [
     )
 ]
 
+vistoria_patterns = [
+    url(
+        regex=r'lista/$',
+        view=views.vistoria_lista,
+        name="vistoria_lista"
+    ),
+    url(
+        regex=r'nova/$',
+        view=views.Vistoria_add.as_view(),
+        name="vistoria_add"
+    ),
+    url(
+        regex=r'update/(?P<pk>\d+)/$',
+        view=views.Vistoria_update.as_view(),
+        name="vistoria_update"
+    )
+
+]
 urlpatterns = [
     url(r'^comunicado/', include(comunicado_patterns)),
     url(r'^atendimento/', include(atendimento_patterns)),
     url(r'^escala/', include(escala_patterns)),
     url(r'^relatorio/', include(relatorio_patterns)),
-    url(r'^vistorias/$', views.lista_vistorias),
+    url(r'^vistoria/', include(vistoria_patterns)),
     url(r'^accounts/login/$', views.acesso_msg, name='acesso_negado'),
     url(r'^gerar/denuncia/(?P<pk>\d+)$', views.gerar_pdf_denuncia, name='gerar_denuncia'),
     url(r'^gerar/comunicacao/(?P<pk>\d+)$', views.gerar_pdf_comunicacao, name='gerar_comunicacao'),

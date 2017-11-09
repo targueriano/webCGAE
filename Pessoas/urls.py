@@ -76,7 +76,7 @@ alojamento_patterns = [
         name='alojamento'
     ),
     url(
-        regex=r'^(?P<pk>\d+\w)/$',
+        regex=r'^(?P<pk>(\d+|\w+)\w)/$',
         view=views.alojamento_quarto,
         name='alojamento_quarto'
     )

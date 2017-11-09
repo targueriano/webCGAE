@@ -342,10 +342,9 @@ class Vistoria(models.Model):
         (u'Ótimo', u'Ótimo'),
     )
     MOTIVOS = (
-        (u'Troca', u'Pedido de troca'),
+        (u'Pedido de troca', u'Pedido de troca'),
         (u'Interesse da administração', u'Interesse da administração'),
     )
-    vistoria = models.AutoField(primary_key=True)
     quarto = models.CharField(choices=ALOJA, max_length=5)
     portas = models.CharField(choices=NIVEL, max_length=20)
     armarios = models.CharField("Armários", choices=NIVEL, max_length=20)
@@ -354,16 +353,20 @@ class Vistoria(models.Model):
     mesa = models.CharField(choices=NIVEL, max_length=20)
     detalhes = models.TextField()
     motivo = models.CharField(choices=MOTIVOS, max_length=30)
-    data = models.DateTimeField()
+    data = models.DateTimeField(auto_now_add=True)
 
 
     def __str__(self):
-        return str(self.vistoria)
+        return str(self.id)
 
     def __unicode__(self):
-        return str(self.vistoria)
+        return str(self.id)
+
+    def get_absolute_url(self):
+        return reverse('vistoria_lista',)
 
     class Meta:
+        ordering = ['-data']
         verbose_name = "Vistoria"
         verbose_name_plural = "Vistorias"
 

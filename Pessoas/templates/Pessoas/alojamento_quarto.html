@@ -9,6 +9,7 @@
   </div>
 
   <div class="row">
+
     {% for aluno in alunos %}
     <div class="col-md-3">
         <a href="{% url 'aluno_perfil' aluno.matricula %}" method="post" ><img src="{{ aluno.perfil_aluno.foto.url }}" class="img-rounded img-responsive" alt="Foto" width="170" height="170"></a>
@@ -17,19 +18,35 @@
       </div>
     </div>
     {% endfor %}
+
     <div class="col-md-12">
+      <hr>
+      <div class="">
+        <h1  class="text-center anos">Vistoria(s)</h1>
+        <br>
+      </div>
       <table class="table table-responsive table-hover">
         <thead>
           <tr>
-            <th>Aluno</th>
-            <th>Turma</th
+            <th>Data</th>
+            <th>Portas</th>
+            <th>Armários</th>
+            <th>Vidros</th>
+            <th>Beliches</th>
+            <th>Mesa</th>
+            <th>Detalhes</th>
           </tr>
         </thead>
-      {% for aluno in alunos %}
+      {% for vistoria in vistorias %}
         <tbody>
           <tr>
-            <td>{{ aluno.nome }}</td>
-            <td>{{ aluno.turma }}</td>
+            <td>{{ vistoria.data }}</td>
+            <td>{{ vistoria.portas }}</td>
+            <td>{{ vistoria.armarios }}</td>
+            <td>{{ vistoria.vidros }}</td>
+            <td>{{ vistoria.beliches }}</td>
+            <td>{{ vistoria.mesa }}</td>
+            <td>{{ vistoria.detalhes }}</td>
           </tr>
         </tbody>
       {% endfor %}

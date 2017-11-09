@@ -176,6 +176,13 @@ class RequerPoderComunicativo(AccessMixin):
 
         return super(RequerPoderComunicativo, self).dispatch(request, *args, **kwargs)
 
+class RequerPoderVistoria(AccessMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm('Vistoria.add_vistoria'):
+            return redirect('/accounts/login/')
+
+        return super(RequerPoderVistoria, self).dispatch(request, *args, **kwargs)
+
 
 class RequerPoderLegislativo(AccessMixin):
     def dispatch(self, request, *args, **kwargs):
@@ -217,6 +224,16 @@ class Prontuario_detalhe_update(RequerPoderAmbulatorial, UpdateView):
                 pd_detalhe.save()
 
         return super(Prontuario_detalhe_update, self).form_valid(form)
+
+class Vistoria_add(RequerPoderVistoria, CreateView):
+    model = Vistoria
+    fields = '__all__'
+    exclude = ('data',)
+
+class Vistoria_update(RequerPoderVistoria, UpdateView):
+    model = Vistoria
+    fields = '__all__'
+    exclude = ('data',)
 
 
 class Comunicado_update(RequerPoderComunicativo, UpdateView):
@@ -523,20 +540,37 @@ def lista_relatorios(request):
     return render(request, 'Atividades/relatorio_lista.html', context)
 
 @login_required(login_url='/accounts/login/')
-def lista_vistorias(request):
-    try:
-        vistorias = Vistoria.objects.all().order_by('-data')
-    except:
-        vistorias = None
+def vistoria_lista(request):
+
+    vistorias = Vistoria.objects.all()
 
     var_get_search = request.POST.get('search_box')
+
 
     if var_get_search is not None:
         vistorias = vistorias.filter( Q(data__icontains=var_get_search)
             | Q(quarto__icontains=var_get_search)
         )
 
-    return render(request, 'Functions/vistoria_lista.html', {'vistorias': vistorias})
+    paginator = Paginator(vistorias, 50)
+
+    # Esteja certo de que o `page request` é um inteiro. Se não, mostre a primeira página.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # Se o page request (9999) está fora da lista, mostre a última página.
+    try:
+        vistorias = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        vistorias = paginator.page(paginator.num_pages)
+
+
+    context = {
+        'vistorias':vistorias,
+    }
+    return render(request, 'Atividades/vistoria_lista.html', context)
 
 @login_required(login_url='/accounts/login/')
 def relatorio_detalhe(request, pk):

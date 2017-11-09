@@ -18,38 +18,56 @@
     </div>
 
     <div class="container">
-      <div class="table-responsive">  
+      <div class="row">
+          <div class="col-md-5"></div>
+          <div class="col-md-2">
+              <a href="{% url 'vistoria_add' %}"><button  type="button" class="btn btn-default btn-lg">Nova</button></a>
+              <br><br>
+          </div>
+          <div class="col-md-5"></div>
+      </div>
+      <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Quarto</th>
-                    <th>Portas</th>
-                    <th>Armários</th>
-                    <th>Vidros</th>
-                    <th>Beliches</th>
-                    <th>Mesa</th>
                     <th>Detalhes</th>
                     <th>Motivo</th>
                     <th>Data</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
             {% for vistoria in vistorias %}
                 <tr>
-                    <td>{{ vistoria.quarto }}</td>
-                    <td>{{ vistoria.portas }}</td>
-                    <td>{{ vistoria.armarios }}</td>
-                    <td>{{ vistoria.vidros }}</td>
-                    <td>{{ vistoria.beliches }}</td>
-                    <td>{{ vistoria.mesa }}</td>
+                    <td><a href="{% url 'alojamento_quarto' vistoria.quarto %}">{{ vistoria.quarto }}</a></td>
                     <td>{{ vistoria.detalhes }}</td>
                     <td>{{ vistoria.motivo }}</td>
                     <td>{{ vistoria.data }}</td>
+                    <td>
+
+                  		<a href="{% url 'vistoria_update' vistoria.pk %}">
+                  			<span class="glyphicon glyphicon-pencil"></span>
+                  		</a>
+                  	</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
       </div>
+      <p>Página {{ vistorias.number }} de {{ vistorias.paginator.num_pages }}.</p>
+      <ul class="pagination" >
+
+          {% if vistorias.has_previous %}
+              <li><a href="?page={{ vistorias.previous_page_number }}">anterior</a></li>
+          {% endif %}
+
+
+          {% if vistorias.has_next %}
+              <li><a href="?page={{ vistorias.next_page_number }}">próxima</a></li>
+          {% endif %}
+
+      </ul>
     </div>
 
 {% endblock content %}

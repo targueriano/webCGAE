@@ -230,13 +230,14 @@ def alojamento(request):
              '13A', '13B', '13C', '13D', '13E', '13F',
              '14A', '14B', '14C', '14D', '14E', '14F',
              '15A', '15B', '15C', '15D', '15E', '15F',
+             'ZooI', 'ZooII', 'ZooIII',
     ]
 
 
 
     lista = list()
 
-    for i in xrange(14*6):
+    for i in xrange(14*6+3):
         cont = Aluno.objects.filter(alojamento=aloja[i]).count()
         lista.append(cont)
 
@@ -249,9 +250,11 @@ def alojamento(request):
 
 def alojamento_quarto(request, pk):
     alunos = Aluno.objects.filter(alojamento=pk)
+    vistorias = Vistoria.objects.filter(quarto=pk)
 
     context = {
         'alunos':alunos,
+        'vistorias':vistorias,
     }
     return render(request, 'Pessoas/alojamento_quarto.html', context)
 
