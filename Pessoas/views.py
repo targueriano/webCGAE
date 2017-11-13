@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import Aluno
 from django.views.generic import CreateView, UpdateView
-from Pessoas.models import Aluno, Curso, Familia, Perfil_do_Aluno
+from Pessoas.models import Aluno, Curso, Familia, Perfil_do_Aluno, Turma, Curso
 from Atividades.models import (Vistoria, Prontuario,Comunicados, Escala_Limpeza,
                                        Escala_Servidores, Limpeza, Relatorio,
                                        Educacional, Educacional_detalhe)
@@ -154,6 +154,8 @@ def home(request):
     top_ensino = Perfil_do_Aluno.objects.all().order_by('-nota_ensino')[:20]
     top_comportamento = Perfil_do_Aluno.objects.all().order_by('-nota_comportamento')[:20]
 
+    turmas = Turma.objects.all().order_by('turma')
+
 
 
     context = {'alunos':alunos,
@@ -162,18 +164,20 @@ def home(request):
                'count_total':count_total,
                'top_ensino':top_ensino,
                'top_comportamento':top_comportamento,
-
+               'turmas':turmas,
                }
 
     return render(request, 'home.html', context)
 
 def fotovisor(request):
-    return render(request, 'Pessoas/fotovisor.html',)
+    turmas = Turma.objects.all()
+    return render(request, 'Pessoas/fotovisor.html',{'turmas':turmas})
 
 
 def fotovisor_turma(request, turma):
-    turma = turma
     alunos = Aluno.objects.filter(turma=turma)
+    turma = turma
+
 
     context = {'alunos':alunos,
                'turma':turma}

@@ -32,23 +32,33 @@ class Perfil_do_Servidor(Pessoa):
         verbose_name = 'Perfil do servidor'
         verbose_name_plural = 'Perfil dos servidores'
 
+
+class Curso(models.Model):
+    curso = models.CharField(max_length=100)
+
+
+    def __str__(self):
+        return self.curso
+
+    def __unicode__(self):
+	    return self.curso
+
+
+
+class Turma(models.Model):
+    curso  = models.ForeignKey(Curso)
+    turma = models.CharField(max_length=10, primary_key=True)
+
+
+    def __str__(self):
+        return self.turma
+
+    def __unicode__(self):
+	    return self.turma
+
+
 class Aluno(Pessoa):
-    TURMA = (
-        (u'1A', u'1A'),
-        (u'1B', u'1B'),
-        (u'1C', u'1C'),
-        (u'1E', u'1E'),
-        (u'2A', u'2A'),
-        (u'2B', u'2B'),
-        (u'2C', u'2C'),
-        (u'2E', u'2E'),
-        (u'3A', u'3A'),
-        (u'3B', u'3B'),
-        (u'3C', u'3C'),
-        (u'3E', u'3E'),
-        (u'SubAI', u'SubAI'),
-        (u'SubAII', u'SubAII'),
-    )
+
     ALOJA = (
         (u'1A',u'1A'),
         (u'1B',u'1B'),
@@ -146,7 +156,7 @@ class Aluno(Pessoa):
     )
     nome = models.CharField(max_length=100, help_text="Nome completo do aluno")
     cidade = models.CharField(max_length=60, editable=True, blank=True, null=True)
-    turma = models.CharField(max_length=8, choices=TURMA, editable=True, blank=True, null=True)
+    turma = models.ForeignKey(Turma)
     alojamento = models.CharField(max_length=10, null=True, blank=True, editable=True, choices=ALOJA)
     emancipado = models.BooleanField(default=False)
     transferido = models.BooleanField(default=False)
@@ -213,6 +223,13 @@ class Perfil_do_Aluno(models.Model):
         (u'Não sabe responder', u'Não sabe responder'),
 
     )
+    FORMA = (
+        (u'Integrado',u'Integrado'),
+        (u'Subsequente',u'Subsequente'),
+        (u'Bacharelado',u'Bacharelado'),
+        (u'Engenharia',u'Engenharia'),
+        (u'Licenciatura',u'Licenciatura'),
+    )
     aluno = models.OneToOneField(Aluno, primary_key=True, related_name='perfil_aluno')
     nota_ensino = models.FloatField("Nota de ensino", blank=True, default=7.0, max_length=4, editable=True, null=True)
     nota_comportamento = models.FloatField("Nota de comportamento", blank=True, default=7.0, max_length=4, editable=True, null=True)
@@ -221,6 +238,8 @@ class Perfil_do_Aluno(models.Model):
     objetivos = models.CharField(max_length=300, choices=OBJ, help_text="Objetivo ao completar o curso", null=True, blank=True)
     foto = models.ImageField(upload_to='Pessoas/', null=True, blank=True)
     motivo = models.CharField(max_length=100, choices=MOT, help_text="Motivo pela escolha do IFC", null=True, blank=True)
+    curso = models.ForeignKey(Curso)
+    forma = models.CharField(choices=FORMA, max_length=30)
 
     class Meta:
         ordering = ['aluno']
@@ -229,45 +248,6 @@ class Perfil_do_Aluno(models.Model):
 
     def __str__(self):
         return str(self.aluno)
-
-    def get_absolute_url(self):
-        return reverse('aluno_lista')
-
-
-
-class Curso(models.Model):
-    CURSO = (
-        (u'Agropecuária',u'Agropecuária'),
-        (u'Agroecologia',u'Agroecologia'),
-        (u'Informática',u'Informática'),
-        (u'Agrimensura',u'Agrimensura'),
-        (u'Eletroeletrônica',u'Eletroeletrônica'),
-        (u'Agronomia',u'Agronomia'),
-        (u'Ciência da Computação',u'Ciência da Computação'),
-        (u'Matemática',u'Matemática'),
-        (u'Física',u'Física'),
-        (u'Engenharia Mecatrônica',u'Engenharia Mecatrônica'),
-    )
-    FORMA = (
-        (u'Técnico Integrado',u'Técnico Integrado'),
-        (u'Técnico Subsequente',u'Técnico Subsequente'),
-        (u'Bacharelado',u'Bacharelado'),
-        (u'Engenharia',u'Engenharia'),
-        (u'Licenciatura',u'Licenciatura'),
-    )
-    aluno = models.OneToOneField(Aluno, primary_key=True)
-    curso = models.CharField(choices=CURSO, max_length=30)
-    forma = models.CharField(choices=FORMA, max_length=30)
-
-    def __str__(self):
-        return self.curso
-
-    def __unicode__(self):
-	    return self.curso
-
-    class Meta:
-        verbose_name = "Curso do aluno"
-        verbose_name_plural = "Curso de cada aluno"
 
     def get_absolute_url(self):
         return reverse('aluno_lista')

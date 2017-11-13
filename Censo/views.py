@@ -60,6 +60,7 @@ def censo_alunos(request):
     alunos_ABC.append(aluno_B)
     alunos_ABC.append(aluno_C)
 
+    
 
     context = {
         'qtd_alunos_local':json.dumps(qtd_alunos_local),

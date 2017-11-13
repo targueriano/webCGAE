@@ -17,7 +17,9 @@
         <div class="col-md-2">
             <div class="list-group">
               {% if perms.auth.add_aluno %}
-              <a href="{% url 'aluno_update' aluno.matricula %}" class="list-group-item"><b>Matrícula</b>: {{ aluno.matricula }}</a>
+              <a href="{% url 'aluno_update' aluno.matricula %}" class="list-group-item">
+                <span class="glyphicon glyphicon-pencil"></span><b> Matrícula</b>: {{ aluno.matricula }}
+              </a>
               <a class="list-group-item"><b>Nascimento</b>: {{ aluno.nascimento }}</a>
               <a class="list-group-item"><b>Idade</b>: {{ idade }}</a>
               <a class="list-group-item"><b>Cidade</b>: {{ aluno.cidade }}</a>
@@ -42,9 +44,12 @@
             <div class="list-group">
               {% if perms.auth.add_aluno %}
               {% if aluno.familia.mae %}
-              <a href="{% url 'aluno_update_familia' aluno.familia.pk %}" class="list-group-item"><b>Mãe</b>: {{ aluno.familia.mae }}</a>
+              <a href="{% url 'aluno_update_familia' aluno.familia.pk %}" class="list-group-item"><b>
+                <span class="glyphicon glyphicon-pencil"></span> Mãe</b>: {{ aluno.familia.mae }}
+                </a>
               {% else %}
-              <a href="{% url 'aluno_add_familia'  %}" class="list-group-item"><b>Mãe</b>: {{ aluno.familia.mae }}</a>
+              <a href="{% url 'aluno_add_familia'  %}" class="list-group-item"><b>
+                <span  class="glyphicon glyphicon-pencil"></span> Mãe</b>: {{ aluno.familia.mae }}</a>
               {% endif %}
               <a class="list-group-item"><b>Profissão da Mãe</b>: {{ aluno.familia.profissao_mae }}</a>
               <a class="list-group-item"><b>Pai</b>: {{ aluno.familia.pai }}</a>
@@ -70,17 +75,17 @@
         <div class="col-md-3">
             {% if perms.auth.add_aluno %}
             <div class="list-group">
-              {% if aluno.curso.curso %}
-              <a href="{% url 'aluno_update_curso' aluno.curso.pk %}"class="list-group-item"><b>Curso</b>: {{ aluno.curso.curso }}</a>
+              {% if aluno.perfil_aluno.curso %}
+              <a href="{% url 'aluno_update_perfil' aluno.perfil_aluno.pk %}"class="list-group-item">
+                <span class="glyphicon glyphicon-pencil"></span><b> Curso</b>: {{ aluno.perfil_aluno.curso }}
+              </a>
               {% else %}
-              <a href="{% url 'aluno_add_curso' %}"class="list-group-item"><b>Curso</b>: {{ aluno.curso.curso }}</a>
+              <a href="{% url 'aluno_add_perfil' %}"class="list-group-item">
+                <span class="glyphicon glyphicon-pencil"></span><b> Curso</b>: {{ aluno.perfil_aluno.curso }}
+              </a>
               {% endif %}
-              <a class="list-group-item"><b>Forma</b>: {{ aluno.curso.forma }}</a>
-              {% if aluno.perfil_aluno.reside %}
-              <a href="{% url 'aluno_update_perfil' aluno.perfil_aluno.pk %}" class="list-group-item"><b>Reside em local</b>: {{ aluno.perfil_aluno.reside }}</a>
-              {% else %}
-              <a href="{% url 'aluno_add_perfil' %}" class="list-group-item"><b>Reside em local</b>: {{ aluno.perfil_aluno.reside }}</a>
-              {% endif %}
+              <a class="list-group-item"><b>Forma</b>: {{ aluno.perfil_aluno.forma }}</a>
+              <a class="list-group-item"><b>Reside em local</b>: {{ aluno.perfil_aluno.reside }}</a>
               <a class="list-group-item"><b>Objetivo ao completar o curso</b>: {{ aluno.perfil_aluno.objetivos }}</a>
               <a class="list-group-item"><b>Motivo pela escolha do IFC</b>: {{ aluno.perfil_aluno.motivo }}</a>
               <a class="list-group-item"><b>Posição no ensino</b>: {{ posicao_ensino }}º</a>
@@ -88,8 +93,8 @@
             </div>
             {% else %}
             <div class="list-group">
-              <a class="list-group-item"><b>Curso</b>: {{ aluno.curso.curso }}</a>
-              <a class="list-group-item"><b>Forma</b>: {{ aluno.curso.forma }}</a>
+              <a class="list-group-item"><b>Curso</b>: {{ aluno.perfil_aluno.curso }}</a>
+              <a class="list-group-item"><b>Forma</b>: {{ aluno.perfil_aluno.forma }}</a>
               <a class="list-group-item"><b>Reside em local</b>: {{ aluno.perfil_aluno.reside }}</a>
               <a class="list-group-item"><b>Objetivo ao completar o curso</b>: {{ aluno.perfil_aluno.objetivos }}</a>
               <a class="list-group-item"><b>Motivo pela escolha do IFC</b>: {{ aluno.perfil_aluno.motivo }}</a>

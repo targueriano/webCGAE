@@ -29,16 +29,6 @@ aluno_patterns = [
         name='aluno_add_familia'
     ),
     url(
-        regex=r'^adicionar/curso/$',
-        view=views.Aluno_add_curso.as_view(),
-        name='aluno_add_curso'
-    ),
-    url(
-        regex=r'^atualizar/curso/(?P<pk>\d+)/$',
-        view=views.Aluno_update_curso.as_view(),
-        name='aluno_update_curso'
-    ),
-    url(
         regex=r'^atualizar/perfil/(?P<pk>\d+)/$',
         view=views.Aluno_update_perfil.as_view(),
         name='aluno_update_perfil'
