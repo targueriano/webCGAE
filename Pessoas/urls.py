@@ -78,5 +78,4 @@ urlpatterns = [
     url(r'^aluno/', include(aluno_patterns)),
     url(r'^perfil/(?P<pk>\d+)/$', views.perfil_aluno, name='aluno_perfil'),
     url(r'^alojamento/', include(alojamento_patterns)),
-
 ]

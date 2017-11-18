@@ -22,7 +22,6 @@ comunicado_patterns = [
 ]
 
 
-
 relatorio_patterns = [
     url(regex=r'^lista/$',
         view=views.lista_relatorios,
@@ -130,6 +129,29 @@ vistoria_patterns = [
     )
 
 ]
+pdf_patterns = [
+    url(
+        regex=r'denuncia/(?P<pk>\d+)/$',
+        view=views.gerar_pdf_denuncia,
+        name="gerar_denuncia"
+    ),
+    url(
+        regex=r'comunicacao/(?P<pk>\d+)/$',
+        view=views.gerar_pdf_comunicacao,
+        name="gerar_comunicacao"
+    ),
+    url(
+        regex=r'comunicado/(?P<pk>\d+)/$',
+        view=views.gerar_pdf_comunicado,
+        name="gerar_comunicado"
+    ),
+    url(
+        regex=r'carteirinha/(?P<pk>\d+)/$',
+        view=views.gerar_pdf_carteirinha,
+        name="gerar_carteirinha"
+    ),
+
+]
 urlpatterns = [
     url(r'^comunicado/', include(comunicado_patterns)),
     url(r'^atendimento/', include(atendimento_patterns)),
@@ -137,7 +159,5 @@ urlpatterns = [
     url(r'^relatorio/', include(relatorio_patterns)),
     url(r'^vistoria/', include(vistoria_patterns)),
     url(r'^accounts/login/$', views.acesso_msg, name='acesso_negado'),
-    url(r'^gerar/denuncia/(?P<pk>\d+)$', views.gerar_pdf_denuncia, name='gerar_denuncia'),
-    url(r'^gerar/comunicacao/(?P<pk>\d+)$', views.gerar_pdf_comunicacao, name='gerar_comunicacao'),
-    url(r'^gerar/comunicado/(?P<pk>\d+)$', views.gerar_pdf_comunicado, name='gerar_comunicado'),
+    url(r'^gerar/', include(pdf_patterns)),
 ]

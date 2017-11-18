@@ -22,7 +22,7 @@
           <span class="badge">{{count_alunos}}</span></a>
           <ul class="dropdown-menu">
             <li><a href="{% url 'aluno_lista' %}">LISTA</a></li>
-            {% if perms.auth.add_aluno %}
+            {% if perms.Pessoas.add_aluno %}
             <li class="dropdown-submenu">
               <a class="menu dropdown-toggle" data-toggle="dropdown" tabindex="-1" href="">ADICIONAR
                 <span class="caret"></span></a>

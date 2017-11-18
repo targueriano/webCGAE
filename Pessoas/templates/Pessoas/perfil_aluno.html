@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-2">
             <div class="list-group">
-              {% if perms.auth.add_aluno %}
+              {% if perms.Pessoas.add_aluno %}
               <a href="{% url 'aluno_update' aluno.matricula %}" class="list-group-item">
                 <span class="glyphicon glyphicon-pencil"></span><b> Matrícula</b>: {{ aluno.matricula }}
               </a>
@@ -42,7 +42,7 @@
 
         <div class="col-md-3">
             <div class="list-group">
-              {% if perms.auth.add_aluno %}
+              {% if perms.Pessoas.add_aluno %}
               {% if aluno.familia.mae %}
               <a href="{% url 'aluno_update_familia' aluno.familia.pk %}" class="list-group-item"><b>
                 <span class="glyphicon glyphicon-pencil"></span> Mãe</b>: {{ aluno.familia.mae }}
@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            {% if perms.auth.add_aluno %}
+            {% if perms.Pessoas.add_aluno %}
             <div class="list-group">
               {% if aluno.perfil_aluno.curso %}
               <a href="{% url 'aluno_update_perfil' aluno.perfil_aluno.pk %}"class="list-group-item">

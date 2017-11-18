@@ -1262,3 +1262,62 @@ def gerar_pdf_comunicado(request, pk):
         return response
 
     return response
+
+def gerar_pdf_carteirinha(request, pk):
+    aluno = Aluno.objects.get(pk=pk)
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="carteirinha_webCGAE.pdf"'
+
+    # Create the PDF object, using the response object as its "file."
+    p = canvas.Canvas(response)
+
+    #retangulo
+    p.line(190,585,400,585)#horizontal superior
+    p.line(190,585,190,440)#vertical esquerda
+    p.line(400,585,400,440)#vertical direita
+    p.line(190,440,400,440)#horizontal inferior
+
+
+    p.setFont("Helvetica", 10)
+    fn = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/Atividades/icon_ifc.png')
+    p.drawImage(fn, 200,529, width=120,height=55)
+
+    try:
+        img = aluno.perfil_aluno.foto.name
+        fn = os.path.join(os.path.dirname(os.path.abspath('__file__')), 'media/%s'%img)
+        p.drawImage(fn, 339,524, width=60,height=60)
+    except:
+        pass
+
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    p.drawString(200, 517, "NOME:")
+    p.line(195,515,395,515)#hor sup
+    p.line(195,515,195,498)#vert esq
+    p.line(395,515,395,498)#vert dir
+    p.line(195,498,395,498)#hor inf
+    p.drawString(205, 503, "%s"%aluno.nome)
+
+    p.drawString(200, 472, "MATRÍCULA:")
+    p.line(195,470,290,470)#hor sup
+    p.line(195,470,195,455)#vert esq
+    p.line(290,470,290,455)#vert dir
+    p.line(195,455,290,455)#hor inf
+    p.drawString(205, 459, "%s"%aluno.matricula)
+
+    p.drawString(295, 472, "ALOJAMENTO:")
+    p.line(295,470,395,470)#hor sup
+    p.line(295,470,295,455)#vert esq
+    p.line(395,470,395,455)#vert dir
+    p.line(295,455,395,455)#hor inf
+    p.drawString(300,459, "%s"%aluno.alojamento)
+
+
+
+
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+    return response

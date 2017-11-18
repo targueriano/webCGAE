@@ -27,8 +27,7 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 class RequerPoder(AccessMixin):
     def dispatch(self, request, *args, **kwargs):
-        if (not request.user.has_perm('add_aluno') or not request.user.has_perm('add_curso_do_aluno')
-            or not request.user.has_perm('add_familia_do_aluno') or not request.user.has_perm('add_perfil_do_aluno')):
+        if not request.user.has_perm('Pessoas.add_aluno'):
             return redirect('/accounts/login/')
         return super(RequerPoder, self).dispatch(request, *args, **kwargs)
 

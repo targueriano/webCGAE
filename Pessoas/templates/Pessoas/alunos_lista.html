@@ -31,7 +31,8 @@
             <th>Cidade</th>
             <th>Turma</th>
             <th>Alojamento</th>
-            {% if perms.auth.add_aluno %}
+            {% if perms.Pessoas.add_aluno %}
+            <th>Carteirinha</th>
             <th>Editar</th>
             {% endif %}
           </tr>
@@ -46,7 +47,12 @@
            <td>{{ aluno.cidade }}</td>
            <td>{{ aluno.turma }}</td>
            <td>{{ aluno.alojamento }}</td>
-           {% if perms.auth.add_aluno %}
+           {% if perms.Pessoas.add_aluno %}
+           <td>
+             <a href="{% url 'gerar_carteirinha' aluno.matricula %}">
+         			<span class="glyphicon glyphicon-picture"></span>
+         		</a>
+           </td>
            <td>
              <a href="{% url 'aluno_update' aluno.matricula %}">
          			<span class="glyphicon glyphicon-pencil"></span>
@@ -62,7 +68,12 @@
          <td>{{ aluno.cidade }}</td>
          <td>{{ aluno.turma }}</td>
          <td>{{ aluno.alojamento }}</td>
-         {% if perms.auth.add_aluno %}
+         {% if perms.Pessoas.add_aluno %}
+         <td>
+           <a href="{% url 'gerar_carteirinha' aluno.matricula %}">
+            <span class="glyphicon glyphicon-picture"></span>
+          </a>
+         </td>
          <td>
            <a href="{% url 'aluno_update' aluno.matricula %}">
             <span class="glyphicon glyphicon-pencil"></span>
