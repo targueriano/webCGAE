@@ -236,7 +236,7 @@ class Perfil_do_Aluno(models.Model):
     saude = models.CharField('Saúde', max_length=300, default=None, blank=True, editable=True, null=True)
     reside = models.CharField("Reside em local", max_length=10, choices=LOCAL)
     objetivos = models.CharField(max_length=300, choices=OBJ, help_text="Objetivo ao completar o curso", null=True, blank=True)
-    foto = models.ImageField(upload_to='Pessoas/', null=True, blank=True)
+    foto = models.ImageField(upload_to='Pessoas/', null=True, blank=True, help_text="O nome do arquivo não pode conter acentos.")
     motivo = models.CharField(max_length=100, choices=MOT, help_text="Motivo pela escolha do IFC", null=True, blank=True)
     curso = models.ForeignKey(Curso)
     forma = models.CharField(choices=FORMA, max_length=30)

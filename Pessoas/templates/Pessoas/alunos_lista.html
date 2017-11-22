@@ -39,7 +39,7 @@
         </thead>
         <tbody>
       {% for aluno in alunos %}
-        {% if aluno.transferido %}
+        {% if aluno.transferido  or aluno.abandonou or aluno.faleceu %}
           <tr style="background-color:#FBC7BC;">
            <td>{{ forloop.counter }}</td>
            <td>{{ aluno.matricula }}</td>

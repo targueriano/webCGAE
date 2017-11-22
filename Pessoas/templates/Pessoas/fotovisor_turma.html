@@ -31,20 +31,34 @@
           <th>Nº</th>
           <th>Matrícula</th>
           <th>Nome</th>
-          <th>Alojamento</th>
-          <th>Cidade</th>
+          <th>Transferido</th>
+          <th>Abandonou</th>
+          <th>Faleceu</th>
        </tr>
        </thead>
        <tbody>
+       {% for aluno in alunos %}
        <tr>
-         {% for aluno in alunos %}
          <td>{{ forloop.counter }}</td>
          <td>{{ aluno.matricula }}</td>
          <td><a href="{% url 'aluno_perfil' aluno.matricula %}" method="post" name="perfil">{{ aluno.nome }}</a></td>
-         <td>{{ aluno.alojamento }}</td>
-         <td>{{ aluno.cidade }}</td>
+         {% if aluno.transferido %}
+         <td><span class="glyphicon glyphicon-ok"></span></td>
+         {% else %}
+         <td></td>
+         {% endif %}
+         {% if aluno.abandonou %}
+         <td><span class="glyphicon glyphicon-ok"></span></td>
+         {% else %}
+         <td></td>
+         {% endif %}
+         {% if aluno.faleceu %}
+         <td><span class="glyphicon glyphicon-ok"></span></td>
+         {% else %}
+         <td></td>
+         {% endif %}
        </tr>
-         {% endfor %}
+      {% endfor %}
        </tbody>
      </table>
     </div>

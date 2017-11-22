@@ -178,7 +178,7 @@ class RequerPoderComunicativo(AccessMixin):
 
 class RequerPoderVistoria(AccessMixin):
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.has_perm('Vistoria.add_vistoria'):
+        if not request.user.has_perm('Atividades.add_vistoria'):
             return redirect('/accounts/login/')
 
         return super(RequerPoderVistoria, self).dispatch(request, *args, **kwargs)
