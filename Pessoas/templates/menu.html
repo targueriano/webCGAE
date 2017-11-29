@@ -63,24 +63,12 @@
           <ul class="dropdown-menu">
             <li><a href="{% url 'educacional_lista' %}">EDUCACIONAL</a></li>
             <li><a href="{% url 'prontuario_lista' %}">AMBULATORIAL</a></li>
-            <li class="dropdown-submenu">
-              <a class="menu dropdown-toggle" data-toggle="dropdown" href="">COMUNICADOS
-              <span class="caret"></span>
-              <ul class="dropdown-menu">
-                <li><a href="{% url 'comunicado_lista' %}">Consultar</a></li>
-                <li><a href="{% url 'comunicado_novo' %}">Adicionar</a></li>
-              </ul>
-            </li>
+            <li><a href="{% url 'comunicado_lista' %}">COMUNICADOS</a></li>
           </ul>
        </li>
 
-       <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="">RELATÓRIOS
-          <span class="caret"></span>  <span class="badge">{{ count }}</span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{% url 'relatorio_lista' %}">CONSULTAR</a></li>
-            <li><a href="{% url 'relatorio_novo' %}">ADICIONAR</a></li>
-          </ul>
+       <li><a href="{% url 'relatorio_lista' %}">RELATÓRIOS
+          <span class="badge">{{ count }}</span></a>
        </li>
 
        <li class="dropdown">

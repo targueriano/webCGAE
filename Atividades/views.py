@@ -1271,48 +1271,81 @@ def gerar_pdf_carteirinha(request, pk):
 
     # Create the PDF object, using the response object as its "file."
     p = canvas.Canvas(response)
-
+    x1 = 190
+    x2 = 450
+    y1 = 585
+    y2 = 420
     #retangulo
-    p.line(190,585,400,585)#horizontal superior
-    p.line(190,585,190,440)#vertical esquerda
-    p.line(400,585,400,440)#vertical direita
-    p.line(190,440,400,440)#horizontal inferior
+    p.line(x1,y1,x2,y1)#horizontal superior
+    p.line(x1,y1,x1,y2)#vertical esquerda
+    p.line(x2,y1,x2,y2)#vertical direita
+    p.line(x1,y2,x2,y2)#horizontal inferior
 
 
-    p.setFont("Helvetica", 10)
+    p.setFont("Times-Roman", 14)
     fn = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/Atividades/icon_ifc.png')
-    p.drawImage(fn, 200,529, width=120,height=55)
+    p.drawImage(fn, 200,514, width=135,height=70)
 
     try:
         img = aluno.perfil_aluno.foto.name
         fn = os.path.join(os.path.dirname(os.path.abspath('__file__')), 'media/%s'%img)
-        p.drawImage(fn, 339,524, width=60,height=60)
+        p.drawImage(fn, 369, 504, width=80,height=80)
     except:
         pass
 
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
-    p.drawString(200, 517, "NOME:")
-    p.line(195,515,395,515)#hor sup
-    p.line(195,515,195,498)#vert esq
-    p.line(395,515,395,498)#vert dir
-    p.line(195,498,395,498)#hor inf
-    p.drawString(205, 503, "%s"%aluno.nome)
+    x1 = 195
+    x2 = x1+250
+    y1 = 498
+    y2 = y1-20
+    X_NOME = 205
+    Y_NOME = y1-15
+    p.drawString(x1+5, y1+2, "NOME:")
+    p.line(x1,y1,x2,y1)#hor sup
+    p.line(x1,y1,x1,y2)#vert esq
+    p.line(x2,y1,x2,y2)#vert dir
+    p.line(x1,y2,x2,y2)#hor inf
+    p.drawString(X_NOME, Y_NOME, "%s"%aluno.nome.upper())
 
-    p.drawString(200, 472, "MATRÍCULA:")
-    p.line(195,470,290,470)#hor sup
-    p.line(195,470,195,455)#vert esq
-    p.line(290,470,290,455)#vert dir
-    p.line(195,455,290,455)#hor inf
-    p.drawString(205, 459, "%s"%aluno.matricula)
+    x1 = 195
+    x2 = x1+110
+    y1 = 455
+    y2 = y1-20
+    X_MAT = X_NOME
+    Y_MAT = y1-15
+    p.drawString(x1+5, y1+2, "MATRÍCULA:")
+    p.line(x1,y1,x2,y1)#hor sup
+    p.line(x1,y1,x1,y2)#vert esq
+    p.line(x2,y1,x2,y2)#vert dir
+    p.line(x1,y2,x2,y2)#hor inf
+    p.drawString(X_MAT, Y_MAT, "%s"%aluno.matricula)
 
-    p.drawString(295, 472, "ALOJAMENTO:")
-    p.line(295,470,395,470)#hor sup
-    p.line(295,470,295,455)#vert esq
-    p.line(395,470,395,455)#vert dir
-    p.line(295,455,395,455)#hor inf
-    p.drawString(300,459, "%s"%aluno.alojamento)
+    x1 = 320
+    x2 = x1+50
+    y1 = 455
+    y2 = y1-20
+    X_ALOJA = x1+5
+    Y_ALOJA = y1-15
+    p.drawString(x1, y1+2, "ALOJA:")
+    p.line(x1,y1,x2,y1)#hor sup
+    p.line(x1,y1,x1,y2)#vert esq
+    p.line(x2,y1,x2,y2)#vert dir
+    p.line(x1,y2,x2,y2)#hor inf
+    p.drawString(X_ALOJA,Y_ALOJA, "%s"%aluno.alojamento)
 
+    x1 = 385
+    x2 = x1+60
+    y1 = 455
+    y2 = y1-20
+    X_TURMA = x1+5
+    Y_TURMA = y1-15
+    p.drawString(x1, y1+2, "TURMA:")
+    p.line(x1,y1,x2,y1)#hor sup
+    p.line(x1,y1,x1,y2)#vert esq
+    p.line(x2,y1,x2,y2)#vert dir
+    p.line(x1,y2,x2,y2)#hor inf
+    p.drawString(X_TURMA,Y_TURMA, "%s"%aluno.turma)
 
 
 
