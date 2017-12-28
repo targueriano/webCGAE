@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="well text-center">
-  <h1 class="anos">Rendimento escolar [{{ano_corrente}}] e Movimentação
+  <h1 class="anos">Rendimento escolar [{{ano_anterior}}] e Movimentação</h1>
 </div>
 <div class="container">
   <div class="row">
@@ -17,6 +17,33 @@
   </div>
 </div>
 <br>
+
+<div class="well text-center">
+  <h1 class="anos">Rendimento p/ Ano</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <canvas id="ren_apro_sem" max-width="150" max-height="150"></canvas>
+    </div>
+    <div class="col-md-6">
+      <canvas id="ren_apro_com" max-width="150" max-height="150"></canvas>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <canvas id="ren_com_dep" max-width="150" max-height="150"></canvas>
+    </div>
+    <div class="col-md-6">
+      <canvas id="ren_repro" max-width="150" max-height="150"></canvas>
+    </div>
+  </div>
+
+</div>
+<br>
+
 <div class="well text-center">
   <h1 class="anos">Número de alunos com dificuldade por disciplina
 </div>
@@ -67,6 +94,111 @@ var situacaoAnual = new Chart(ctx, {
 
 });
 </script>
+
+<script>
+var ctx = document.getElementById("ren_apro_sem");
+//var names = JSON.parse('{{ names|safe }}');
+var anos = JSON.parse('{{ ren_anos|safe }}');
+var aprovados = JSON.parse('{{ apro_s|safe }}');
+
+var ren_apro_sem = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: anos,
+        datasets: [{
+            label: "Aprovados s/ exame",
+            data: aprovados,
+            backgroundColor: [
+                'rgba(50, 205, 50, 0.8)',
+            ],
+            borderColor: [
+                'rgba(0,0,0,1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+
+});
+</script>
+
+<script>
+var ctx = document.getElementById("ren_apro_com");
+//var names = JSON.parse('{{ names|safe }}');
+var anos = JSON.parse('{{ ren_anos|safe }}');
+var aprovados_exame = JSON.parse('{{ apro_c|safe }}');
+
+var ren_apro_com = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: anos,
+        datasets: [{
+            label: "Aprovados c/ exame",
+            data: aprovados_exame,
+            backgroundColor: [
+                'rgba(255, 215, 0, 0.8)',
+            ],
+            borderColor: [
+                'rgba(0,0,0,1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+
+});
+</script>
+
+<script>
+var ctx = document.getElementById("ren_com_dep");
+//var names = JSON.parse('{{ names|safe }}');
+var anos = JSON.parse('{{ ren_anos|safe }}');
+var aprovados_dep = JSON.parse('{{ com_dep|safe }}');
+
+var ren_com_dep = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: anos,
+        datasets: [{
+            label: "Aprovados com dependência",
+            data: aprovados_dep,
+            backgroundColor: [
+                'rgba(255, 0, 0, 0.8)',
+            ],
+            borderColor: [
+                'rgba(0,0,0,1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+
+});
+</script>
+
+<script>
+var ctx = document.getElementById("ren_repro");
+//var names = JSON.parse('{{ names|safe }}');
+var anos = JSON.parse('{{ ren_anos|safe }}');
+var reprovados = JSON.parse('{{ repro|safe }}');
+
+var ren_apro_sem = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: anos,
+        datasets: [{
+            label: "Reprovados",
+            data: reprovados,
+            backgroundColor: [
+                'rgba(128, 128, 128, 0.8)',
+            ],
+            borderColor: [
+                'rgba(0,0,0,1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+
+});
+</script>
+
 
 <script>
 var ctx = document.getElementById("movimentacao");

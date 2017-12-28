@@ -60,7 +60,7 @@ def censo_alunos(request):
     alunos_ABC.append(aluno_B)
     alunos_ABC.append(aluno_C)
 
-    
+
 
     context = {
         'qtd_alunos_local':json.dumps(qtd_alunos_local),
@@ -73,9 +73,23 @@ def censo_alunos(request):
 
 def censo_rendimento(request):
     alunos = Aluno.objects.all()
-    #rendimento
-    ano_corrente = (date.today().year)-1
-    queryset = Rendimento.objects.filter(ano=ano_corrente)
+    #rendimento por ano
+    apro_s = list()
+    apro_c = list()
+    com_dep = list()
+    repro = list()
+    ren_anos = list()
+    anos = Rendimento.objects.all().order_by('ano')
+    for i in xrange(len(anos)):
+        ren_anos.append(anos[i].ano)
+        apro_s.append(anos[i].aprovados_sem_exame)
+        apro_c.append(anos[i].aprovados_com_exame)
+        com_dep.append(anos[i].com_dependencia)
+        repro.append(anos[i].reprovados)
+
+    #rendimento anterior
+    ano_anterior = (date.today().year)-1
+    queryset = Rendimento.objects.filter(ano=ano_anterior)
     aprovados_s = [aps.aprovados_sem_exame for aps in queryset ]
     aprovados_c = [aps.aprovados_com_exame for aps in queryset ]
     com_dependencia = [aps.com_dependencia for aps in queryset ]
@@ -104,8 +118,13 @@ def censo_rendimento(request):
         'reprovados':json.dumps(reprovados),
         'disciplina':json.dumps(disciplina),
         'qtd_al':json.dumps(qtd_al),
-        'ano_corrente':ano_corrente,
+        'ano_anterior':ano_anterior,
         'movimento':json.dumps(movimento),
+        'ren_anos':json.dumps(ren_anos),
+        'apro_s':json.dumps(apro_s),
+        'apro_c':json.dumps(apro_c),
+        'com_dep':json.dumps(com_dep),
+        'repro':json.dumps(repro),
     }
 
     return render(request, 'censo_rendimento.html', context)

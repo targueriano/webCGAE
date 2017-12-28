@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from Pessoas.models import Aluno, Curso
+from Pessoas.models import Aluno, Perfil_do_Aluno
 from .forms import (ComunicadoForm, RelatorioForm, ProntuarioDetalheForm,
                               ProntuarioForm, Prontuario_detalhe_formset,
                               Educacional_detalhe_formset, EducacionalForm)
@@ -580,7 +580,7 @@ def relatorio_detalhe(request, pk):
     except:
         aluno = None
     try:
-        dados = Curso.objects.get(aluno=relatorio.denunciado)
+        dados = Perfil_do_Aluno.objects.get(aluno=relatorio.denunciado)
     except:
         dados = None
     #efetuar a analise para avaliar o grau de andamento do processo
@@ -1103,7 +1103,7 @@ def gerar_pdf_comunicacao(request, pk):
         as datas dos mesmos oportunamente.</font>'
 
         hj = date.today()
-        texto4 = '<font size=11>Rio do Sul/SC, %s de %s de %s</font>'%(hj.day, MESES[hj.month], hj.year)
+        texto4 = '<font size=11>Rio do Sul/SC, %s de %s de %s</font>'%(hj.day, MESES[hj.month-1], hj.year)
 
         texto5 = '<font size=11>Coordenador(a) do CAE/CGAE </font>'
 
@@ -1213,7 +1213,7 @@ def gerar_pdf_comunicado(request, pk):
 
     hj = date.today()
     texto_recebido = "Recebido em ______/______/ %s."%hj.year
-    texto_data = 'Rio do Sul, %s de %s de %s.'%(hj.day, MESES[hj.month], hj.year)
+    texto_data = 'Rio do Sul, %s de %s de %s.'%(hj.day, MESES[hj.month-1], hj.year)
     texto_comunicado = comunicado.texto
 
     texto_ciente = 'Eu, ________________________________________________, \
