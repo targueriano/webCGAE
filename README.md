@@ -109,8 +109,9 @@ Em /etc/apache2/sites-available/ criar um arquivo "webcgae.conf"
 	ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-
 </VirtualHost>
+
+
 
 Salvar e fechar
 
