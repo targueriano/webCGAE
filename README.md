@@ -79,6 +79,7 @@ Em /etc/apache2/sites-available/ criar um arquivo "webcgae.conf"
 1. Escrever no arquivo as seguintes instruções sem os parenteses: 
 
 <VirtualHost *:80>
+
 	ServerAdmin seuemail@gmail.com
 	ServerName webcgae.com
         ServerAlias www.webcgae.com
