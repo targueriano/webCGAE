@@ -9,54 +9,73 @@ GERAL
 1. Fazer download do projeto. 
 2. Escolher local para armazenâ-lo, pode ser "/var/www/" ou em algum diretório do usuário comun.
 
+
 *****************************************
 INSTALAR
 *****************************************
 # sudo apt install apache2 libapache2-mod-wsgi python-virtualenv python-tk python-pip
 
+
 *****************************************
 CRIAR VIRTUALENV, ACESSAR-LO E INSTALAR PACOTES NECESSÁRIOS 
 *****************************************
 (local do webCGAE-master[pode modificar nome, por exemplo elimar master]) 
+
 $ virtualenv .env_webcgae
+
 $ source .env_webcgae/bin/activate
+
 (.env_webcgae) $ pip install -r requirements.txt
+
 
 Se apresentar erro, tentar manualmente, por exempo "pip install pacote"
 ******************************************
 CONFIGURAR PROJETO
 ******************************************
+
 (.env_webcgae)$ python manage.py migrate
+
 (.env_webcgae)$ python manage.py makemigrations
+
 (.env_webcgae)$ python manage.py collectstatic
+
 (.env_webcgae)$ python manage.py createsuperuser
 
 Editar arquivo settings.py de webCGAE_1_11
-de DEBUG = True
-para
+
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.249', 'localhost', 'webcgae.com'] (endereço que hospederá o projeto)
 
+
 **************************************************
 PERMISSÕES AOS ARQUIVOS
 **************************************************
-# chmod 777 -R webCGAE (Não sei se é a forma mais sábia, porém a única que consegui fazer funcionar o acesso aos arquivos)
+
+# chmod 777 -R webCGAE 
+
 # chown :www-data webCGAE
+
 # chown :www-data db.sqlite3
+
 
 *****************************************
 CONFIGURAR HOSTS
 *****************************************
+
 Em /etc/hosts
+
 127.0.0.1   webcgae.com
 
 
 *****************************************
 CONFIGURAR APACHE2
 *****************************************
+
 Em /etc/apache2/sites-available/ criar um arquivo "webcgae.conf"
+
 # touch webcgae.conf
+
 1. Escrever no arquivo as seguintes instruções sem os parenteses: 
 
 <VirtualHost *:80>
@@ -93,6 +112,7 @@ Em /etc/apache2/sites-available/ criar um arquivo "webcgae.conf"
 </VirtualHost>
 
 Salvar e fechar
+
 2. Ativar o site: 
 # a2ensite webcgae.conf
 
